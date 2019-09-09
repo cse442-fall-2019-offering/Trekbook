@@ -3,7 +3,10 @@ version: '3'
 services:
   api:
     build: .
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "while !</dev/tcp/db/5432; do sleep 1; done;
+                      python manage.py makemigrations &&
+                      python manage.py migrate &&
+                      python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/src
     ports:
