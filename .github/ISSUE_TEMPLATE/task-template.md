@@ -7,5 +7,8 @@ assignees: ''
 
 ---
 
-# Task: _add title_
 ## Description
+
+## Acceptance Test
+* List them here
+  * You can indent with tab or 4 spaces
