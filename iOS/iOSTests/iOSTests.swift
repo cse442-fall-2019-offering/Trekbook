@@ -1,15 +1,15 @@
 //
-//  TrekbookTests.swift
-//  TrekbookTests
+//  iOSTests.swift
+//  iOSTests
 //
-//  Created by Dennis Fedorishin on 9/16/19.
+//  Created by Dennis Fedorishin on 9/18/19.
 //  Copyright © 2019 Trekbook. All rights reserved.
 //
 
 import XCTest
-@testable import Trekbook
+@testable import iOS
 
-class TrekbookTests: XCTestCase {
+class iOSTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
