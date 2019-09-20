@@ -64,6 +64,9 @@
                                 <state key="normal" title="sign in">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="JRD-kY-cbr" kind="show" id="oaR-Te-v9U"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FpG-2h-Jku">
                                 <rect key="frame" x="122" y="545" width="170" height="27"/>
@@ -71,6 +74,9 @@
                                 <state key="normal" title="don't have an account? click here!">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="MM8-Fu-yw7" kind="show" id="L3i-Hn-YhH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.55686274509803924" green="0.62745098039215685" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -109,6 +115,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="47.826086956521742" y="20.758928571428569"/>
+        </scene>
+        <!--RegistrationViewController-->
+        <scene sceneID="qMx-Rn-Knn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Registration" referencedIdentifier="RegistrationViewController" id="MM8-Fu-yw7" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BTX-dt-QKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="682" y="139"/>
+        </scene>
+        <!--MapViewController-->
+        <scene sceneID="9uH-Ps-L8z">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MapView" referencedIdentifier="MapViewController" id="JRD-kY-cbr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="puy-oJ-BrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="664" y="192"/>
         </scene>
     </scenes>
     <resources>
