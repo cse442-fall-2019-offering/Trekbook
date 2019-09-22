@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">Android</string>
     <string name="title_activity_login">Sign in</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="prompt_username">username</string>
+    <string name="prompt_password">password</string>
+    <string name="action_sign_in">sign in</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="prompt_register">"don't have an account? click here!"</string>
+    <string name="welcome_user">"Welcome: "</string>
+    <string name="welcome_text">"Trekbook Traveling"</string>
+    <string name="welcome_subtext">"track and share you trips around the world, in real time"</string>
+
+    
 </resources>
