@@ -18,15 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Register" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpS-cA-ksm">
-                                <rect key="frame" x="175" y="97" width="64" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New User Registration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpS-cA-ksm">
+                                <rect key="frame" x="121.5" y="97" width="171" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4v7-1j-rKW">
-                                <rect key="frame" x="180" y="698" width="54" height="30"/>
-                                <state key="normal" title="Sign Up">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4v7-1j-rKW">
+                                <rect key="frame" x="177.5" y="698" width="59" height="30"/>
+                                <state key="normal" title="Sign Up!">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
@@ -80,6 +80,7 @@
                             <constraint firstItem="YnC-Yv-hyR" firstAttribute="trailing" secondItem="99l-dX-gFt" secondAttribute="trailing" id="BD5-OD-Srv"/>
                             <constraint firstItem="YnC-Yv-hyR" firstAttribute="leading" secondItem="T5T-5n-dLa" secondAttribute="leading" id="EWN-Dx-Ulg"/>
                             <constraint firstItem="T5T-5n-dLa" firstAttribute="top" secondItem="eXY-dU-jhQ" secondAttribute="bottom" constant="75" id="Ff7-Ev-cTT"/>
+                            <constraint firstItem="lpS-cA-ksm" firstAttribute="centerX" secondItem="4v7-1j-rKW" secondAttribute="centerX" id="Hfw-DE-6gz"/>
                             <constraint firstItem="YnC-Yv-hyR" firstAttribute="leading" secondItem="eXY-dU-jhQ" secondAttribute="leading" id="IH7-7U-TFK"/>
                             <constraint firstItem="YnC-Yv-hyR" firstAttribute="trailing" secondItem="T5T-5n-dLa" secondAttribute="trailing" id="KNc-DX-6i2"/>
                             <constraint firstItem="YnC-Yv-hyR" firstAttribute="trailing" secondItem="eXY-dU-jhQ" secondAttribute="trailing" id="La3-p8-58E"/>
@@ -87,6 +88,7 @@
                             <constraint firstItem="YnC-Yv-hyR" firstAttribute="leading" secondItem="99l-dX-gFt" secondAttribute="leading" id="Reu-ye-N5L"/>
                             <constraint firstItem="YnC-Yv-hyR" firstAttribute="trailing" secondItem="m1e-YS-qxs" secondAttribute="trailing" id="Te1-8U-5wQ"/>
                             <constraint firstItem="yz7-Iz-vsb" firstAttribute="top" secondItem="T5T-5n-dLa" secondAttribute="bottom" constant="75" id="UUJ-zj-zHB"/>
+                            <constraint firstItem="lpS-cA-ksm" firstAttribute="centerX" secondItem="YLk-H9-78a" secondAttribute="centerX" id="UsG-NX-FUm"/>
                             <constraint firstItem="YnC-Yv-hyR" firstAttribute="leading" secondItem="APY-jR-fD5" secondAttribute="leading" constant="40" id="WEY-Vr-1cE"/>
                             <constraint firstItem="yz7-Iz-vsb" firstAttribute="top" secondItem="T5T-5n-dLa" secondAttribute="bottom" constant="75" id="X3m-5X-iwg"/>
                             <constraint firstItem="APY-jR-fD5" firstAttribute="trailing" secondItem="YnC-Yv-hyR" secondAttribute="trailing" constant="204" id="d0C-0t-x8w"/>
