@@ -1,5 +1,6 @@
 package com.example.android;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.graphics.Color;
@@ -19,6 +21,7 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         final Spinner spinner = (Spinner) findViewById(R.id.recPasswordSpinners);
+        final Button signupSubmit = (Button) findViewById(R.id.signupSubmit);
 
         String[] dataSource = getResources().getStringArray(R.array.recovery_questions);
         final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
@@ -53,5 +56,13 @@ public class SignupActivity extends AppCompatActivity {
         };
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(spinnerArrayAdapter);
+
+        signupSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToMap = new Intent(getApplicationContext(), MapActivity.class);
+                startActivity(goToMap);
+            }
+        });
     }
 }
