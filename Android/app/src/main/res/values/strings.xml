@@ -14,6 +14,7 @@
     <string name="welcome_subtext">"track and share you trips around the world, in real time"</string>
 
     <!-- registration page strings -->
+    <string name="title_activity_signup">Create An Account!</string>
     <string name="first_name_hint">"first name"</string>
     <string name="last_name_hint">"last name"</string>
     <string name="conf_hint">"confirm password"</string>

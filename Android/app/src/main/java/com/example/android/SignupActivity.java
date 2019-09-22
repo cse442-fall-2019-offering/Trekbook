@@ -43,10 +43,10 @@ public class SignupActivity extends AppCompatActivity {
                 TextView tv = (TextView) view;
                 if(position == 0){
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(Color.DKGRAY);
                 }
                 else {
-                    tv.setTextColor(Color.BLACK);
+                    tv.setTextColor(Color.WHITE);
                 }
                 return view;
             }
