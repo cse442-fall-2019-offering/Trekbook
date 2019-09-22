@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.MapActivity;
 import com.example.android.R;
 import com.example.android.SignupActivity;
 
@@ -109,9 +110,12 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                if(usernameEditText.getText() != null && passwordEditText.getText() != null) {
+                    Intent goToMap = new Intent(getApplicationContext(), MapActivity.class);
+                    startActivity(goToMap);
+                    loginViewModel.login(usernameEditText.getText().toString(),
+                            passwordEditText.getText().toString());
+                }
             }
         });
 
