@@ -13,5 +13,18 @@
     <string name="welcome_text">"Trekbook Traveling"</string>
     <string name="welcome_subtext">"track and share you trips around the world, in real time"</string>
 
-    
+    <!-- registration page strings -->
+    <string name="first_name_hint">"first name"</string>
+    <string name="last_name_hint">"last name"</string>
+    <string name="conf_hint">"confirm password"</string>
+    <string name="recovery_hint">"enter answer to above question"</string>
+    <string-array name="recovery_questions">
+        <item>[select a recovery question]</item>
+        <item>what city were you born in?</item>
+        <item>what was the name of your first pet?</item>
+        <item>what school did you attend in sixth grade?</item>
+        <item>what was the name of your first kiss?</item>
+        <item>what was the make and model of your first car?</item>
+    </string-array>
+    <string name="signup_submit">sign up!</string>
 </resources>
