@@ -259,4 +259,4 @@ lint/tmp/
 # lint/reports/
 
 # Pods that are too large
-iOS/Pods/
+iOS/Pods/Mapbox-iOS-SDK/
