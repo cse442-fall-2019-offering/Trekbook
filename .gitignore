@@ -257,3 +257,6 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# Pods that are too large
+iOS/Pods/
