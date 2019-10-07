@@ -35,15 +35,15 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 //        mapView.addAnnotation(hello)
         
         // Add a single tap gesture recognizer. This gesture requires the built-in MGLMapView tap gestures (such as those for zoom and annotation selection) to fail.
-        let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleMapTap(sender:)))
-        for recognizer in mapView.gestureRecognizers! where recognizer is UITapGestureRecognizer {
-            singleTap.require(toFail: recognizer)
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleMapTap(sender:)))
+        for recognizer in mapView.gestureRecognizers! where recognizer is UILongPressGestureRecognizer {
+            longPress.require(toFail: recognizer)
         }
-        mapView.addGestureRecognizer(singleTap)
+        mapView.addGestureRecognizer(longPress)
         
     }
     
-    @objc @IBAction func handleMapTap(sender: UITapGestureRecognizer) {
+    @objc @IBAction func handleMapTap(sender: UILongPressGestureRecognizer) {
         // Convert tap location (CGPoint) to geographic coordinate (CLLocationCoordinate2D).
         let tapPoint: CGPoint = sender.location(in: mapView)
         let tapCoordinate: CLLocationCoordinate2D = mapView.convert(tapPoint, toCoordinateFrom: mapView)
