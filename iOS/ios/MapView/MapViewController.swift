@@ -23,7 +23,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         view.addSubview(mapView)
          
 //        // Set the delegate property of our map view to `self` after instantiating it.
-//        mapView.delegate = self
+        mapView.delegate = self
          
 //        // Declare the marker `hello` and set its coordinates, title, and subtitle.
 //        let hello = MGLPointAnnotation()
@@ -48,19 +48,32 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         let tapPoint: CGPoint = sender.location(in: mapView)
         let tapCoordinate: CLLocationCoordinate2D = mapView.convert(tapPoint, toCoordinateFrom: mapView)
         print("You tapped at: \(tapCoordinate.latitude), \(tapCoordinate.longitude)")
-         
-//        // Create an array of coordinates for our polyline, starting at the center of the map and ending at the tap coordinate.
-//        var coordinates: [CLLocationCoordinate2D] = [mapView.centerCoordinate, tapCoordinate]
-         
-//        // Remove any existing polyline(s) from the map.
-//        if mapView.annotations?.count != nil, let existingAnnotations = mapView.annotations {
-//            mapView.removeAnnotations(existingAnnotations)
-//        }
-         
-//        // Add a polyline with the new coordinates.
-//        let polyline = MGLPolyline(coordinates: &coordinates, count: UInt(coordinates.count))
         let new_marker = MGLPointAnnotation()
         new_marker.coordinate = tapCoordinate
+        let activity_desc = UIAlertController(title: "Enter Description", message: "Name of Location", preferredStyle: .alert)
+        
+        
+        activity_desc.addAction (UIAlertAction(title: "Save", style: .default) { (alertAction) in
+            let activity_title = activity_desc.textFields![0].text!
+            let activity_details = activity_desc.textFields![1].text!
+            new_marker.title = activity_title
+            new_marker.subtitle = activity_details
+        })
+        
+        activity_desc.addTextField { (textField) in
+            textField.placeholder = "title"
+            textField.textColor = .red
+        }
+        
+        activity_desc.addTextField { (textField) in
+            textField.placeholder = "details"
+            textField.textColor = .blue
+        }
+        
+        activity_desc.addAction(UIAlertAction(title: "Cancel", style: .default) { (alertAction) in })
+        self.present(activity_desc, animated:true, completion: nil)
+        
+        
         mapView.addAnnotation(new_marker)
     }
  
@@ -68,9 +81,9 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 //    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
 //        return nil
 //    }
-//
-//    // Allow callout view to appear when an annotation is tapped.
-//    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-//        return true
-//    }
+
+    // Allow callout view to appear when an annotation is tapped.
+    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
+        return true
+    }
 }
