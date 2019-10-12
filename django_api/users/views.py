@@ -17,7 +17,7 @@ class LoginView(View):
         :return: LoginResult
         """
 
-        username = request.GET.get('username', '')
-        password = request.GET.get('password', '')
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
 
         return LoginHandler.login(username, password)
