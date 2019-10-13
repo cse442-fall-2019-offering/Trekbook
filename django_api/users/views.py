@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View
-from users.handlers import LoginHandler
+from users.handlers import LoginHandler, SignupHandler
 import json
 from users.result_objects import LoginResult
 
@@ -23,3 +23,27 @@ class LoginView(View):
         password = request.data.get('password', '')
 
         return LoginHandler.login(username, password)
+
+
+class SignupView(View):
+    """
+    handles URLs:
+        /v1/signup [POST]
+    """
+
+    def post(self, request, api_version, *args, **kwargs) -> LoginResult:
+        """
+
+        :param request:
+        :param api_version:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+
+        username = request.data.get('username')
+        password = request.data.get('password')
+        firstname = request.data.get('firstname')
+        lastname = request.data.get('lastname')
+
+        return SignupHandler.signup(username, password, firstname, lastname)
