@@ -13,6 +13,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -72,6 +75,10 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_map);
+        final EditText edit = findViewById(R.id.edit_text);
+        edit.setVisibility(View.INVISIBLE);
+        Button submit = (Button)findViewById(R.id.submit_description);
+        submit.setVisibility(View.INVISIBLE);
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(new OnMapReadyCallback() {
@@ -170,7 +177,11 @@ public class MapActivity extends AppCompatActivity {
                                 Point.fromLngLat(point.getLongitude(), point.getLatitude()));
                         feat.addBooleanProperty("selected", true);
                         feat.addStringProperty("title", "marker-" + (++feature_ticker));
-                        feat.addStringProperty("description", "THIS IS A POINT MADE STRING GAOSJGOAIHGIIADPHPGAOPDHGPOHAPODHGPOHADPOGHPOADHGPOHP");
+                        EditText user_input = (EditText)findViewById(R.id.edit_text);
+                        user_input.setVisibility(View.VISIBLE);
+                        Button submit = (Button)findViewById(R.id.submit_description);
+                        submit.setVisibility(View.VISIBLE);
+                        feat.addStringProperty("description", "Add Description Above");
                         for(Feature ft : features) {
                             ft.addBooleanProperty("selected", false);
                         }
@@ -182,6 +193,20 @@ public class MapActivity extends AppCompatActivity {
                     }
                 };
                 mapboxMap.addOnMapLongClickListener(add_marker);
+                ((Button)findViewById(R.id.submit_description)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        EditText editText = findViewById(R.id.edit_text);
+                        Feature feat = features.get(features.size() - 1);
+                        feat.addStringProperty("description", editText.getText().toString());
+
+                        Button submit = (Button)findViewById(R.id.submit_description);
+                        submit.setVisibility(View.INVISIBLE);
+                        editText.setVisibility(View.INVISIBLE);
+                        editText.setText("");
+                        mapboxMap.getStyle().addImage("marker-" + feature_ticker, fromLayoutToBM(feat));
+                    }
+                });
             }
         });
     }
