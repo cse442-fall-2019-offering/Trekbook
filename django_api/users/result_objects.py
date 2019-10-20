@@ -15,3 +15,15 @@ class LoginResult(ApiResult):
         }
 
         return serialized
+
+
+class LogoutResult(ApiResult):
+    def __init__(self):
+        pass
+
+    def serialize(self, version: int = 1) -> dict:
+        serialized = {
+            'message': 'Logged out!'
+        }
+
+        return serialized

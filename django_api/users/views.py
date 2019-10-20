@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from users.handlers import LoginHandler, SignupHandler
 import json
-from users.result_objects import LoginResult
+from users.result_objects import LoginResult, LogoutResult
 
 
 class LoginView(View):
@@ -47,3 +47,14 @@ class SignupView(View):
         lastname = request.data.get('lastname')
 
         return SignupHandler.signup(username, password, firstname, lastname)
+
+
+class LogoutView(View):
+    """
+    handles URLs:
+        /v1/logout [POST]
+    """
+
+    def post(self, request, api_version, *args, **kwargs) -> LogoutResult:
+
+        return LogoutResult()
