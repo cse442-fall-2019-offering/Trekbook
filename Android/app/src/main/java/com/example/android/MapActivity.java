@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -70,11 +71,13 @@ public class MapActivity extends AppCompatActivity {
     HashMap<String, Bitmap> imgMap = new HashMap<>();
     HashMap<String, View> viewMap = new HashMap<>();
     private int feature_ticker;
+    private boolean currently_editing;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_map);
+        currently_editing = false;
         final EditText edit = findViewById(R.id.edit_text);
         edit.setVisibility(View.INVISIBLE);
         Button submit = (Button)findViewById(R.id.submit_description);
@@ -135,6 +138,7 @@ public class MapActivity extends AppCompatActivity {
                         // Map is set up and the style has loaded. Now you can add additional data or make other map adjustments.
                         style.addImages(imgMap);
                         GeoJsonSource src = (GeoJsonSource)style.getSource(MARKER_SOURCE_ID);
+
                         src.setGeoJson(FeatureCollection.fromFeatures(features));
                     }
                 });
@@ -145,6 +149,7 @@ public class MapActivity extends AppCompatActivity {
                         List<Feature> check_features = mapboxMap.queryRenderedFeatures(screenPoint, MARKER_LAYER_ID);
                         for(Feature ft : features)
                         {
+                            Log.i("Feature: ", ft.toJson());
                             ft.addBooleanProperty("selected", false);
                         }
                         if (!check_features.isEmpty()) {
@@ -173,6 +178,9 @@ public class MapActivity extends AppCompatActivity {
                 add_marker = new MapboxMap.OnMapLongClickListener() {
                     @Override
                     public boolean onMapLongClick(@NonNull LatLng point) {
+                        if(currently_editing)
+                            return false;
+                        currently_editing = true;
                         Feature feat = Feature.fromGeometry(
                                 Point.fromLngLat(point.getLongitude(), point.getLatitude()));
                         feat.addBooleanProperty("selected", true);
@@ -204,6 +212,7 @@ public class MapActivity extends AppCompatActivity {
                         submit.setVisibility(View.INVISIBLE);
                         editText.setVisibility(View.INVISIBLE);
                         editText.setText("");
+                        currently_editing = false;
                         mapboxMap.getStyle().addImage("marker-" + feature_ticker, fromLayoutToBM(feat));
                     }
                 });
