@@ -78,9 +78,11 @@ public class MapActivity extends AppCompatActivity {
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_map);
         currently_editing = false;
-        final EditText edit = findViewById(R.id.edit_text);
-        edit.setVisibility(View.INVISIBLE);
-        Button submit = (Button)findViewById(R.id.submit_description);
+        final EditText desc = findViewById(R.id.input_description);
+        desc.setVisibility(View.INVISIBLE);
+        final EditText title = findViewById(R.id.input_title);
+        title.setVisibility(View.INVISIBLE);
+        Button submit = (Button)findViewById(R.id.submit_marker);
         submit.setVisibility(View.INVISIBLE);
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
@@ -97,10 +99,10 @@ public class MapActivity extends AppCompatActivity {
 
                 for(Feature feat : features)
                 {
-                    feat.addStringProperty("title", "marker-" + (++feature_ticker));
+                    feat.addStringProperty("marker_id", "marker-" + (++feature_ticker));
                     feat.addBooleanProperty("selected", false);
                     feat.addStringProperty("description", "marker-" + (feature_ticker));
-
+                    feat.addStringProperty("title", "Default Title Test");
                     Bitmap bitmap = fromLayoutToBM(feat);
 
                     imgMap.put("marker-" + feature_ticker, bitmap);
@@ -127,7 +129,7 @@ public class MapActivity extends AppCompatActivity {
 
                         )
                         .withLayer(new SymbolLayer(POPUP_LAYER_ID, MARKER_SOURCE_ID)
-                            .withProperties(PropertyFactory.iconImage("{title}"),
+                            .withProperties(PropertyFactory.iconImage("{marker_id}"),
                                     iconAnchor(Property.ICON_ANCHOR_BOTTOM_LEFT),
                                     iconOffset(new Float[] {-20.0f, -9.0f}))
                             .withFilter(Expression.eq(Expression.get("selected"), true)))
@@ -157,7 +159,7 @@ public class MapActivity extends AppCompatActivity {
                             Feature associated = null;
                             for(Feature ft : features)
                             {
-                                if (ft.getStringProperty("title").equals(selectedFeature.getStringProperty("title")))
+                                if (ft.getStringProperty("marker_id").equals(selectedFeature.getStringProperty("marker_id")))
                                 {
                                     ft.addBooleanProperty("selected", true);
                                 }
@@ -166,7 +168,7 @@ public class MapActivity extends AppCompatActivity {
                                 }
                             }
                             selectedFeature.addBooleanProperty("selected", true);
-                            String title = selectedFeature.getStringProperty("title");
+                            String title = selectedFeature.getStringProperty("marker_id");
                             GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
                             src.setGeoJson(FeatureCollection.fromFeatures(features));
                             Toast.makeText(getBaseContext(), "You selected " + title, Toast.LENGTH_SHORT).show();
@@ -184,12 +186,15 @@ public class MapActivity extends AppCompatActivity {
                         Feature feat = Feature.fromGeometry(
                                 Point.fromLngLat(point.getLongitude(), point.getLatitude()));
                         feat.addBooleanProperty("selected", true);
-                        feat.addStringProperty("title", "marker-" + (++feature_ticker));
-                        EditText user_input = (EditText)findViewById(R.id.edit_text);
+                        feat.addStringProperty("marker_id", "marker-" + (++feature_ticker));
+                        EditText user_input = (EditText)findViewById(R.id.input_description);
                         user_input.setVisibility(View.VISIBLE);
-                        Button submit = (Button)findViewById(R.id.submit_description);
+                        EditText input_title = (EditText)findViewById(R.id.input_title);
+                        input_title.setVisibility(View.VISIBLE);
+                        Button submit = (Button)findViewById(R.id.submit_marker);
                         submit.setVisibility(View.VISIBLE);
                         feat.addStringProperty("description", "Add Description Above");
+                        feat.addStringProperty("title", "Add Title Above");
                         for(Feature ft : features) {
                             ft.addBooleanProperty("selected", false);
                         }
@@ -201,17 +206,20 @@ public class MapActivity extends AppCompatActivity {
                     }
                 };
                 mapboxMap.addOnMapLongClickListener(add_marker);
-                ((Button)findViewById(R.id.submit_description)).setOnClickListener(new View.OnClickListener() {
+                ((Button)findViewById(R.id.submit_marker)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        EditText editText = findViewById(R.id.edit_text);
+                        EditText editText = findViewById(R.id.input_description);
+                        EditText titleText = findViewById(R.id.input_title);
                         Feature feat = features.get(features.size() - 1);
                         feat.addStringProperty("description", editText.getText().toString());
-
-                        Button submit = (Button)findViewById(R.id.submit_description);
+                        feat.addStringProperty("title", titleText.getText().toString());
+                        Button submit = (Button)findViewById(R.id.submit_marker);
                         submit.setVisibility(View.INVISIBLE);
                         editText.setVisibility(View.INVISIBLE);
+                        titleText.setVisibility(View.INVISIBLE);
                         editText.setText("");
+                        titleText.setText("");
                         currently_editing = false;
                         mapboxMap.getStyle().addImage("marker-" + feature_ticker, fromLayoutToBM(feat));
                     }
@@ -225,6 +233,8 @@ public class MapActivity extends AppCompatActivity {
         LinearLayout layout = (LinearLayout) this.getLayoutInflater().inflate(R.layout.popup_description, null, false);
         TextView desc = (TextView)layout.findViewById(R.id.description);
         desc.setText(feat.getStringProperty("description"));
+        TextView title = (TextView)layout.findViewById(R.id.marker_title);
+        title.setText(feat.getStringProperty("title"));
         layout.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
         layout.layout(0, 0, layout.getMeasuredWidth(), layout.getMeasuredHeight());
         layout.setDrawingCacheEnabled(true);

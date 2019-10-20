@@ -5,11 +5,25 @@
     android:background="@color/background"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <ImageView
+    <ImageView
             android:id="@+id/logoView"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@android:drawable/ic_menu_add" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/marker_title"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="This is the input title" />
 
         <TextView
             android:id="@+id/description"
@@ -19,7 +33,9 @@
             android:layout_marginLeft="8dp"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:text="" />
+            android:text="This is the description that the user entered" />
+
+    </LinearLayout>
 
         <TextView
             android:id="@+id/person"
