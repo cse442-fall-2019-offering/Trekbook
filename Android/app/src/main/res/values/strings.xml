@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">TrekBook</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiaHRpbnRlcmEiLCJhIjoiY2swcmQ4a2J4MDU0NzNtcm5hZ2hzeWdzeCJ9.RWTp_A463vOrlzI2p_Hy2g</string>
+    <string name="input_description">Input Description Here</string>
+    <string name="input_title">Input Title Here</string>
+    <string name="submit_description">Submit</string>
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_username">username</string>
     <string name="prompt_password">password</string>
@@ -13,7 +16,6 @@
     <string name="welcome_user">"Welcome: "</string>
     <string name="welcome_text">"Trekbook Traveling"</string>
     <string name="welcome_subtext">"track and share you trips around the world, in real time"</string>
-
     <!-- registration page strings -->
     <string name="title_activity_signup">Create An Account!</string>
     <string name="first_name_hint">"first name"</string>
