@@ -22,6 +22,8 @@ class LoginView(View):
         username = request.data.get('username', '')
         password = request.data.get('password', '')
 
+
+
         return LoginHandler.login(username, password)
 
 

@@ -33,11 +33,11 @@ extension UIViewController {
 
 struct LoginStruct: Codable {
  
-    let response: responseData?
+    let data: responseData?
     let code: Int?
     
     private enum CodingKeys: String, CodingKey {
-        case response
+        case data
         case code
     }
     
@@ -78,20 +78,38 @@ class LoginViewController: UIViewController {
     @IBAction func login(_ sender: Any) {
         // make call to API
         
-        guard let apiUrl = URL(string: "https://google.com/endpoint/thing") else { return }
-        URLSession.shared.dataTask(with: apiUrl) { (data, response
-                 , error) in
+        let Url = String(format: "http://0.0.0.0:8000/v1/login")
+        guard let serviceUrl = URL(string: Url) else { return }
+        var dict = Dictionary<String, Any>()
+
+        dict["username"] = self.UsernameTextField.text
+        dict["password"] = self.PasswordTextField.text
+        var request = URLRequest(url: serviceUrl)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let httpBody = try? JSONSerialization.data(withJSONObject: dict)
+        request.httpBody = httpBody
+        
+        print(request.httpBody)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
                  guard let data = data else { return }
                  do {
                      let decoder = JSONDecoder()
                      let apiData = try decoder.decode(LoginStruct.self, from: data)
                     
+                    if apiData.code! == 200 {
+                        DispatchQueue.main.async {
+                             self.performSegue(withIdentifier: "performLoginTransition", sender: self)
+                         }
+                    }
+                 
                      // print data here
-                     print(apiData.name)
-                        
+                     print(apiData)
+
                      // make transition based on request response
 //                     self.performSegue(withIdentifier: "performLoginTransition", sender: self)
-                     
+
                  } catch let err {
                      print("Err", err)
               }
