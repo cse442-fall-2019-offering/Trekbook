@@ -38,15 +38,10 @@ class TrekbookMiddleware(object):
 
         if hasattr(request, 'body') and request.body:
             if request.method == 'POST':
-                request_data = deepcopy(dict(request.POST))
-
-                for key, val in request_data.items():
-                    if isinstance(val, list) and len(val) == 1:  # pragma: no branch
-                        request_data[key] = val[0]
-
-                request.data = request_data
-            else:
-                request.data = {}
+                # request.data = deepcopy(dict(request.body))
+                body_unicode = request.body.decode('utf-8')
+                body = json.loads(body_unicode)
+                request.data = body
 
         return self.get_response(request)
 
