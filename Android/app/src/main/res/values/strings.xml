@@ -3,6 +3,7 @@
     <string name="mapbox_access_token">pk.eyJ1IjoiaHRpbnRlcmEiLCJhIjoiY2swcmQ4a2J4MDU0NzNtcm5hZ2hzeWdzeCJ9.RWTp_A463vOrlzI2p_Hy2g</string>
     <string name="input_description">Input Description Here</string>
     <string name="input_title">Input Title Here</string>
+    <string name="input_bio">Here is the location where the user bio will end up, \n\nBe sure to include all the details on what makes your profile worth visiting and tell us a little about yourself!</string>
     <string name="submit_description">Submit</string>
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_username">username</string>
