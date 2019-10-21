@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MapActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@mipmap/plus_icon_round"
-        mapbox:layout_constrainedHeight="false"
-        mapbox:layout_constrainedWidth="false"
-        mapbox:layout_constraintEnd_toEndOf="parent"
-        mapbox:layout_constraintTop_toTopOf="parent" />
-
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
@@ -27,6 +14,28 @@
         mapbox:mapbox_cameraTargetLng="-73.99155"
         mapbox:mapbox_cameraZoom="11">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/cardview_dark_background">
+                <Button
+                    android:id="@+id/logout_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="300dp"
+                    android:width="50dp"
+                    android:height="50dp"
+                    android:layout_weight="1"
+                    android:text="Logout" />
+            </LinearLayout>
+        </LinearLayout>
     </com.mapbox.mapboxsdk.maps.MapView>
 
 </android.support.constraint.ConstraintLayout>
