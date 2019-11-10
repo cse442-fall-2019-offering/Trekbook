@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		33498328233325C000B8A58C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33498326233325C000B8A58C /* LaunchScreen.storyboard */; };
 		33498333233325C000B8A58C /* iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33498332233325C000B8A58C /* iOSTests.swift */; };
 		3349833E233325C000B8A58C /* iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3349833D233325C000B8A58C /* iOSUITests.swift */; };
+		33A8EBED2377B1F80003B190 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A8EBEC2377B1F80003B190 /* API.swift */; };
 		33BE08F12334813200CBAD6D /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33BE08F02334813200CBAD6D /* Registration.storyboard */; };
 		33BE08F32334821B00CBAD6D /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE08F22334821B00CBAD6D /* RegistrationViewController.swift */; };
 		33BE08F52334831300CBAD6D /* MapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33BE08F42334831300CBAD6D /* MapView.storyboard */; };
@@ -75,6 +76,7 @@
 		334983552333291D00B8A58C /* AirbnbCereal-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AirbnbCereal-Light.ttf"; sourceTree = "<group>"; };
 		334983562333291D00B8A58C /* AirbnbCereal-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AirbnbCereal-Book.ttf"; sourceTree = "<group>"; };
 		334983572333291D00B8A58C /* AirbnbCereal-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AirbnbCereal-Medium.ttf"; sourceTree = "<group>"; };
+		33A8EBEC2377B1F80003B190 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = API.swift; path = ios/API.swift; sourceTree = SOURCE_ROOT; };
 		33BE08F02334813200CBAD6D /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Registration.storyboard; path = ios/Login/Registration.storyboard; sourceTree = SOURCE_ROOT; };
 		33BE08F22334821B00CBAD6D /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationViewController.swift; path = ios/Login/RegistrationViewController.swift; sourceTree = SOURCE_ROOT; };
 		33BE08F42334831300CBAD6D /* MapView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = MapView.storyboard; path = ios/MapView/MapView.storyboard; sourceTree = SOURCE_ROOT; };
@@ -146,6 +148,7 @@
 				33498324233325C000B8A58C /* Assets.xcassets */,
 				33498326233325C000B8A58C /* LaunchScreen.storyboard */,
 				33498329233325C000B8A58C /* Info.plist */,
+				33A8EBEC2377B1F80003B190 /* API.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -219,7 +222,6 @@
 				6F6CEA3DD4E0882EEFDD6775 /* Pods-iOSUITests.debug.xcconfig */,
 				267D181D8804D7FA0DC92DAF /* Pods-iOSUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -451,6 +453,7 @@
 				33498320233325BF00B8A58C /* LoginViewController.swift in Sources */,
 				3349831E233325BF00B8A58C /* AppDelegate.swift in Sources */,
 				33BE08F72334833D00CBAD6D /* MapViewController.swift in Sources */,
+				33A8EBED2377B1F80003B190 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
