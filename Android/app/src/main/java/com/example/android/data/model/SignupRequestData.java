@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class SignupRequestData {
 
-    @SerializedName("first-name")
+    @SerializedName("firstname")
     @Expose
     private String firstName;
-    @SerializedName("last-name")
+    @SerializedName("lastname")
     @Expose
     private String lastName;
     @SerializedName("username")
@@ -17,21 +17,12 @@ public class SignupRequestData {
     @SerializedName("password")
     @Expose
     private String password;
-    @SerializedName("recovery-question")
-    @Expose
-    private String recoveryQuestion;
-    @SerializedName("recovery-answer")
-    @Expose
-    private String recoveryAnswer;
 
-    public SignupRequestData(String firstName, String lastName, String username, String password,
-                             String recoveryQuestion, String recoveryAnswer){
+    public SignupRequestData(String firstName, String lastName, String username, String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
-        this.recoveryQuestion = recoveryQuestion;
-        this.recoveryAnswer = recoveryAnswer;
     }
 
     public String getFirstName() {
@@ -64,22 +55,6 @@ public class SignupRequestData {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRecoveryQuestion() {
-        return recoveryQuestion;
-    }
-
-    public void setRecoveryQuestion(String recoveryQuestion) {
-        this.recoveryQuestion = recoveryQuestion;
-    }
-
-    public String getRecoveryAnswer() {
-        return recoveryAnswer;
-    }
-
-    public void setRecoveryAnswer(String recoveryAnswer) {
-        this.recoveryAnswer = recoveryAnswer;
     }
 
 }

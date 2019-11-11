@@ -19,8 +19,14 @@ import com.example.android.SignupActivity;
 import com.example.android.data.ApiService;
 import com.example.android.data.ApiSingleton;
 import com.example.android.data.model.LoggedInUser;
+import com.example.android.data.model.LoggedInUserPackage;
 import com.example.android.data.model.LoginRequestData;
 
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,13 +34,16 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
 
+    private EditText usernameEditText;
+    private EditText passwordEditText;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final EditText usernameEditText = findViewById(R.id.username);
-        final EditText passwordEditText = findViewById(R.id.regLastName);
+        usernameEditText = findViewById(R.id.username);
+        passwordEditText = findViewById(R.id.regLastName);
         final Button loginButton = findViewById(R.id.login);
         final Button signUpButton = findViewById(R.id.signup);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
@@ -43,35 +52,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if(usernameEditText.getText() != null && passwordEditText.getText() != null) {
-                    //TODO: This needs to be made modular for the submit button listener
-
-                    ApiService apiService = ApiSingleton.getInstance().getApiService();
-                    LoginRequestData data = new LoginRequestData(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-                    Call<LoggedInUser> call = apiService.getLoggedInUser(data);
-
-                    call.enqueue(new Callback<LoggedInUser>() {
-                        @Override
-                        public void onResponse(Call<LoggedInUser> call, Response<LoggedInUser> response) {
-                            //Response code is in the range [200..300)
-                            if (response.isSuccessful()) {
-                                Log.i("API response success", response.toString());
-                                Intent goToMap = new Intent(getApplicationContext(), MapActivity.class);
-                                startActivity(goToMap);
-                            }
-                            //Server has returned some sort of error code
-                            else {
-                                Log.e("Bad API code", "Successful call to server, but bad return code");
-                            }
-
-                        }
-
-                        //This happens if something basic goes wrong, internet not connected?
-                        @Override
-                        public void onFailure(Call<LoggedInUser> call, Throwable t) {
-                            Log.e("API failure", t.toString());
-                        }
-                    });
+                    performLogin();
                 }
                 return false;
             }
@@ -80,36 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("API response success", "The button was clicked");
-                if(usernameEditText.getText() != null && passwordEditText.getText() != null) {
-                    ApiService apiService = ApiSingleton.getInstance().getApiService();
-                    LoginRequestData data = new LoginRequestData(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-                    Call<LoggedInUser> call = apiService.getLoggedInUser(data);
-
-                    call.enqueue(new Callback<LoggedInUser>() {
-                        @Override
-                        public void onResponse(Call<LoggedInUser> call, Response<LoggedInUser> response) {
-                            //Response code is in the range [200..300)
-                            if (response.isSuccessful()) {
-                                Log.i("API response success", response.toString());
-                                Intent goToMap = new Intent(getApplicationContext(), MapActivity.class);
-                                startActivity(goToMap);
-                            }
-                            //Server has returned some sort of error code
-                            else {
-                                Log.e("Bad API code", "Successful call to server, but bad code");
-                            }
-
-                        }
-
-                        //This happens if something basic goes wrong, internet not connected?
-                        @Override
-                        public void onFailure(Call<LoggedInUser> call, Throwable t) {
-                            Log.e("API failure", t.toString());
-                        }
-                    });
-                }
+                performLogin();
             }
         });
 
@@ -122,14 +74,49 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome_user) + model.getDisplayName();
+    private void updateUiWithUser(LoggedInUser user) {
+        String welcome = getString(R.string.welcome_user) + user.getFirstName();
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    private void performLogin(){
+        if(!usernameEditText.getText().toString().equals("") && !passwordEditText.getText().toString().equals("")) {
+            ApiService apiService = ApiSingleton.getInstance().getApiService();
+            LoginRequestData data = new LoginRequestData(usernameEditText.getText().toString(),
+                    passwordEditText.getText().toString());
+            Single<Response<LoggedInUserPackage>> testObservable= apiService.getLoggedInUser(data);
+            testObservable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new SingleObserver<Response<LoggedInUserPackage>>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+                        }
+                        @Override
+                        public void onSuccess(Response<LoggedInUserPackage> userResponse) {
+                            if( userResponse.isSuccessful()){
+                                updateUiWithUser(userResponse.body().getLoggedInUser());
+                                Intent goToMap = new Intent(getApplicationContext(), MapActivity.class);
+                                startActivity(goToMap);
+                            }
+                            else{
+                                showLoginFailed(R.string.login_failed);
+                            }
+
+                        }
+                        @Override
+                        public void onError(Throwable e) {
+                            showLoginFailed(R.string.no_connection_to_server);
+                        }
+                    });
+        }
+        else{
+            showLoginFailed(R.string.login_no_text);
+        }
     }
 
 }

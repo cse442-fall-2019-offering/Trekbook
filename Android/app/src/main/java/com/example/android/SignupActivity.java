@@ -1,6 +1,7 @@
 package com.example.android;
 
 import android.content.Intent;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,12 +12,20 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.graphics.Color;
+import android.widget.Toast;
 
 import com.example.android.data.ApiService;
 import com.example.android.data.ApiSingleton;
 import com.example.android.data.model.LoggedInUser;
+import com.example.android.data.model.LoggedInUserPackage;
+import com.example.android.data.model.LoginRequestData;
 import com.example.android.data.model.SignupRequestData;
 
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -85,38 +94,55 @@ public class SignupActivity extends AppCompatActivity {
                 final String recoveryAText = recoveryAInp.getText().toString();
 
                 if(passwordText.equals(confPasswordText)){
-                    ApiService apiService = ApiSingleton.getInstance().getApiService();
-                    SignupRequestData data = new SignupRequestData(firstNameText, lastNameText, userNameText,
-                            passwordText, recoveryQText, recoveryAText);
-                    Call<LoggedInUser> call = apiService.getNewRegisteredUser(data);
-
-                    call.enqueue(new Callback<LoggedInUser>() {
-                        @Override
-                        public void onResponse(Call<LoggedInUser> call, Response<LoggedInUser> response) {
-                            //Response code is in the range [200..300)
-                            if (response.isSuccessful()) {
-                                Log.i("API response success", response.toString());
-                                Intent goToMap = new Intent(getApplicationContext(), MapActivity.class);
-                                startActivity(goToMap);
-                            }
-                            //Server has returned some sort of error code
-                            else {
-                                //We can do a catch of everything here
-                                Log.e("Bad API code", "Successful call to server, but bad code: " + response.toString());
-                            }
-
-                        }
-
-                        //This happens if something basic goes wrong, internet not connected?
-                        @Override
-                        public void onFailure(Call<LoggedInUser> call, Throwable t) {
-                            Log.e("API failure", t.toString());
-                        }
-                    });
+                    performSignup(userNameText, passwordText, firstNameText, lastNameText);
+                }
+                else{
+                    //TODO: Warn that password doesnt match
                 }
 
 
             }
         });
     }
+
+    private void performSignup(String username, String password, String firstname, String lastname){
+        ApiService apiService = ApiSingleton.getInstance().getApiService();
+        SignupRequestData signupData = new SignupRequestData(firstname, lastname, username, password);
+        Single<Response<LoggedInUserPackage>> testObservable= apiService.getNewRegisteredUser(signupData);
+        testObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<Response<LoggedInUserPackage>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+                    @Override
+                    public void onSuccess(Response<LoggedInUserPackage> userResponse) {
+                        if( userResponse.isSuccessful()){
+                            updateUiWithUser(userResponse.body().getLoggedInUser());
+                            Intent goToMap = new Intent(getApplicationContext(), MapActivity.class);
+                            startActivity(goToMap);
+                        }
+                        else{
+                            showLoginFailed(R.string.sign_up_user_exists);
+                        }
+
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        showLoginFailed(R.string.no_connection_to_server);
+                    }
+                });
+    }
+
+    private void updateUiWithUser(LoggedInUser user) {
+        String welcome = getString(R.string.welcome_user) + user.getFirstName();
+        // TODO : initiate successful logged in experience
+        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+    }
+
+    private void showLoginFailed(@StringRes Integer errorString) {
+        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+
 }

@@ -7,16 +7,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class LoggedInUser {
 
-    @SerializedName("first-name")
+    @SerializedName("first_name")
     @Expose
     private String firstName;
-    @SerializedName("last-name")
+    @SerializedName("last_name")
     @Expose
     private String lastName;
-    @SerializedName("session-token")
+    @SerializedName("username")
     @Expose
-    private String sessionToken;
-    @SerializedName("uid")
+    private String username;
+    @SerializedName("user_id")
     @Expose
     private String uid;
 
@@ -41,12 +41,12 @@ public class LoggedInUser {
         this.lastName = lastName;
     }
 
-    public String getSessionToken() {
-        return sessionToken;
+    public String getUsername() {
+        return username;
     }
 
-    public void setSessionToken(String sessionToken) {
-        this.sessionToken = sessionToken;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getUid() {
@@ -61,7 +61,7 @@ public class LoggedInUser {
     public String toString(){
         return "User: " + firstName + " " + lastName
                 + " with an id of: "+ uid +
-                " and a session token of " + sessionToken;
+                " and a username of " + username;
     }
 
 }
