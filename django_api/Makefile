@@ -9,4 +9,4 @@ run:
 
 .PHONY: createadmin
 createadmin:
-	docker-compose run --rm api ./manage.py createsuperuser --username admin --email admin@trekbook.com
+	docker-compose run --rm api ./manage.py createsuperuser --username admin

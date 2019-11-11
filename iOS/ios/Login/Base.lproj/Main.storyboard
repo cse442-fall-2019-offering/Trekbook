@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AirbnbCereal-Book.ttf">
+            <string>AirbnbCerealApp-Book</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iOStblogo" translatesAutoresizingMaskIntoConstraints="NO" id="z2l-ln-H7O">
+                                <rect key="frame" x="87" y="123" width="240" height="176"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Trekbook Traveling" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGs-Hs-0ZH">
+                                <rect key="frame" x="80" y="293" width="254" height="27"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="track and share your trips around the world, in real time. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acv-M7-jQa">
+                                <rect key="frame" x="68" y="328" width="278" height="71"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="Q8J-hZ-EFB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-LW-UNu">
+                                <rect key="frame" x="93" y="412" width="228" height="30"/>
+                                <color key="backgroundColor" red="0.5568627451" green="0.62745098040000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="0ft-DY-oOb">
+                                <rect key="frame" x="93" y="460" width="228" height="30"/>
+                                <color key="backgroundColor" red="0.5568627451" green="0.62745098040000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="qr1-bs-1lQ"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezO-Mq-p1I">
+                                <rect key="frame" x="178" y="504" width="58" height="39"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="20"/>
+                                <state key="normal" title="sign in">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9m1-Bk-Yyj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FpG-2h-Jku">
+                                <rect key="frame" x="122" y="545" width="170" height="27"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="11"/>
+                                <state key="normal" title="don't have an account? click here!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="MM8-Fu-yw7" kind="show" id="L3i-Hn-YhH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.55686274509803924" green="0.62745098039215685" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ezO-Mq-p1I" firstAttribute="top" secondItem="0ft-DY-oOb" secondAttribute="bottom" constant="14" id="3TD-70-OsB"/>
+                            <constraint firstItem="z2l-ln-H7O" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="3ej-BO-nVx"/>
+                            <constraint firstItem="0ft-DY-oOb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="93" id="8fW-w5-hvQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="z2l-ln-H7O" secondAttribute="bottom" constant="563" id="C2f-qx-4aS"/>
+                            <constraint firstItem="acv-M7-jQa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="68" id="GJS-sw-ngh"/>
+                            <constraint firstItem="acv-M7-jQa" firstAttribute="centerX" secondItem="AGs-Hs-0ZH" secondAttribute="centerX" id="Gp3-18-5Zp"/>
+                            <constraint firstItem="cWF-LW-UNu" firstAttribute="top" secondItem="acv-M7-jQa" secondAttribute="bottom" constant="13" id="H5D-s5-I1p"/>
+                            <constraint firstItem="acv-M7-jQa" firstAttribute="centerX" secondItem="z2l-ln-H7O" secondAttribute="centerX" id="HOQ-Du-F0M"/>
+                            <constraint firstItem="cWF-LW-UNu" firstAttribute="leading" secondItem="0ft-DY-oOb" secondAttribute="leading" id="INB-8S-uOo"/>
+                            <constraint firstItem="acv-M7-jQa" firstAttribute="centerX" secondItem="0ft-DY-oOb" secondAttribute="centerX" id="K8p-Zq-a5a"/>
+                            <constraint firstItem="cWF-LW-UNu" firstAttribute="trailing" secondItem="0ft-DY-oOb" secondAttribute="trailing" id="L2P-wu-o2y"/>
+                            <constraint firstItem="z2l-ln-H7O" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="79" id="OGz-I8-97T"/>
+                            <constraint firstItem="acv-M7-jQa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="328" id="R4K-Jp-ehn"/>
+                            <constraint firstItem="ezO-Mq-p1I" firstAttribute="centerX" secondItem="FpG-2h-Jku" secondAttribute="centerX" id="URJ-Mk-kzf"/>
+                            <constraint firstItem="acv-M7-jQa" firstAttribute="top" secondItem="z2l-ln-H7O" secondAttribute="bottom" constant="29" id="WU7-0y-39j"/>
+                            <constraint firstItem="acv-M7-jQa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bjS-3y-Z4M"/>
+                            <constraint firstItem="0ft-DY-oOb" firstAttribute="top" secondItem="cWF-LW-UNu" secondAttribute="bottom" constant="18" id="prl-8O-jFe"/>
+                            <constraint firstItem="ezO-Mq-p1I" firstAttribute="top" secondItem="acv-M7-jQa" secondAttribute="bottom" constant="105" id="q3B-Uh-HBJ"/>
+                            <constraint firstItem="FpG-2h-Jku" firstAttribute="top" secondItem="ezO-Mq-p1I" secondAttribute="bottom" constant="2" id="x74-3T-9h3"/>
+                            <constraint firstItem="acv-M7-jQa" firstAttribute="top" secondItem="AGs-Hs-0ZH" secondAttribute="bottom" constant="8" symbolic="YES" id="z8q-hg-KXK"/>
+                            <constraint firstItem="ezO-Mq-p1I" firstAttribute="centerX" secondItem="0ft-DY-oOb" secondAttribute="centerX" id="zmr-fd-qhQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="LogoImageView" destination="z2l-ln-H7O" id="6gF-5i-LOg"/>
+                        <outlet property="PasswordTextField" destination="0ft-DY-oOb" id="ZUp-50-n6b"/>
+                        <outlet property="SignUpButton" destination="FpG-2h-Jku" id="paz-6N-mY8"/>
+                        <outlet property="UsernameTextField" destination="cWF-LW-UNu" id="tVa-cH-Eic"/>
+                        <segue destination="JRD-kY-cbr" kind="showDetail" identifier="performLoginTransition" id="sU4-1S-T4v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="47.826086956521742" y="20.758928571428569"/>
+        </scene>
+        <!--RegistrationViewController-->
+        <scene sceneID="qMx-Rn-Knn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Registration" referencedIdentifier="RegistrationViewController" id="MM8-Fu-yw7" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BTX-dt-QKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="682" y="139"/>
+        </scene>
+        <!--MapViewController-->
+        <scene sceneID="9uH-Ps-L8z">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MapView" referencedIdentifier="MapViewController" id="JRD-kY-cbr" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Snn-Yc-3YE"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="puy-oJ-BrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="664" y="192"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="iOStblogo" width="552" height="552"/>
+    </resources>
+</document>

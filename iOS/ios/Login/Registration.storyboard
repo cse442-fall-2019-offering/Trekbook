@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AirbnbCereal-Book.ttf">
+            <string>AirbnbCerealApp-Book</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Registration View Controller-->
+        <scene sceneID="J36-VA-Sko">
+            <objects>
+                <viewController storyboardIdentifier="RegistrationViewController" id="MIq-WG-rlZ" customClass="RegistrationViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YLk-H9-78a">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New User Registration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpS-cA-ksm">
+                                <rect key="frame" x="105" y="91.5" width="204" height="26.5"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4v7-1j-rKW">
+                                <rect key="frame" x="169.5" y="728" width="75" height="39"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="20"/>
+                                <state key="normal" title="Sign Up!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="signup:" destination="MIq-WG-rlZ" eventType="touchUpInside" id="dGY-vW-gWE"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="first name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YnC-Yv-hyR">
+                                <rect key="frame" x="40" y="148" width="170" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="Ld5-z8-J7J"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="99l-dX-gFt">
+                                <rect key="frame" x="40" y="238" width="170" height="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m1e-YS-qxs">
+                                <rect key="frame" x="40" y="336" width="170" height="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eXY-dU-jhQ">
+                                <rect key="frame" x="40" y="434" width="170" height="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yz7-Iz-vsb">
+                                <rect key="frame" x="40" y="630" width="170" height="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T5T-5n-dLa">
+                                <rect key="frame" x="40" y="532" width="170" height="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.5568627451" green="0.62745098040000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="YnC-Yv-hyR" firstAttribute="top" secondItem="YLk-H9-78a" secondAttribute="top" constant="148" id="0Pc-uy-8lp"/>
+                            <constraint firstItem="YnC-Yv-hyR" firstAttribute="trailing" secondItem="yz7-Iz-vsb" secondAttribute="trailing" id="3lg-Dq-9Ur"/>
+                            <constraint firstItem="eXY-dU-jhQ" firstAttribute="top" secondItem="m1e-YS-qxs" secondAttribute="bottom" constant="75" id="5oF-Z7-UTq"/>
+                            <constraint firstItem="99l-dX-gFt" firstAttribute="top" secondItem="YnC-Yv-hyR" secondAttribute="bottom" constant="75" id="9gc-3o-idv"/>
+                            <constraint firstItem="m1e-YS-qxs" firstAttribute="top" secondItem="99l-dX-gFt" secondAttribute="bottom" constant="75" id="AxM-y7-rhm"/>
+                            <constraint firstItem="YnC-Yv-hyR" firstAttribute="trailing" secondItem="99l-dX-gFt" secondAttribute="trailing" id="BD5-OD-Srv"/>
+                            <constraint firstItem="YnC-Yv-hyR" firstAttribute="leading" secondItem="T5T-5n-dLa" secondAttribute="leading" id="EWN-Dx-Ulg"/>
+                            <constraint firstItem="T5T-5n-dLa" firstAttribute="top" secondItem="eXY-dU-jhQ" secondAttribute="bottom" constant="75" id="Ff7-Ev-cTT"/>
+                            <constraint firstItem="lpS-cA-ksm" firstAttribute="centerX" secondItem="4v7-1j-rKW" secondAttribute="centerX" id="Hfw-DE-6gz"/>
+                            <constraint firstItem="YnC-Yv-hyR" firstAttribute="leading" secondItem="eXY-dU-jhQ" secondAttribute="leading" id="IH7-7U-TFK"/>
+                            <constraint firstItem="YnC-Yv-hyR" firstAttribute="trailing" secondItem="T5T-5n-dLa" secondAttribute="trailing" id="KNc-DX-6i2"/>
+                            <constraint firstItem="YnC-Yv-hyR" firstAttribute="trailing" secondItem="eXY-dU-jhQ" secondAttribute="trailing" id="La3-p8-58E"/>
+                            <constraint firstItem="YnC-Yv-hyR" firstAttribute="leading" secondItem="yz7-Iz-vsb" secondAttribute="leading" id="QEX-fr-VXd"/>
+                            <constraint firstItem="YnC-Yv-hyR" firstAttribute="leading" secondItem="99l-dX-gFt" secondAttribute="leading" id="Reu-ye-N5L"/>
+                            <constraint firstItem="YnC-Yv-hyR" firstAttribute="trailing" secondItem="m1e-YS-qxs" secondAttribute="trailing" id="Te1-8U-5wQ"/>
+                            <constraint firstItem="yz7-Iz-vsb" firstAttribute="top" secondItem="T5T-5n-dLa" secondAttribute="bottom" constant="75" id="UUJ-zj-zHB"/>
+                            <constraint firstItem="lpS-cA-ksm" firstAttribute="centerX" secondItem="YLk-H9-78a" secondAttribute="centerX" id="UsG-NX-FUm"/>
+                            <constraint firstItem="YnC-Yv-hyR" firstAttribute="leading" secondItem="APY-jR-fD5" secondAttribute="leading" constant="40" id="WEY-Vr-1cE"/>
+                            <constraint firstItem="yz7-Iz-vsb" firstAttribute="top" secondItem="T5T-5n-dLa" secondAttribute="bottom" constant="75" id="X3m-5X-iwg"/>
+                            <constraint firstItem="APY-jR-fD5" firstAttribute="trailing" secondItem="YnC-Yv-hyR" secondAttribute="trailing" constant="204" id="d0C-0t-x8w"/>
+                            <constraint firstItem="T5T-5n-dLa" firstAttribute="top" secondItem="eXY-dU-jhQ" secondAttribute="bottom" constant="75" id="glo-fI-Pjy"/>
+                            <constraint firstItem="4v7-1j-rKW" firstAttribute="top" secondItem="yz7-Iz-vsb" secondAttribute="bottom" constant="75" id="qHW-Nk-yv3"/>
+                            <constraint firstItem="m1e-YS-qxs" firstAttribute="top" secondItem="99l-dX-gFt" secondAttribute="bottom" constant="75" id="v0o-a0-JYi"/>
+                            <constraint firstItem="YnC-Yv-hyR" firstAttribute="leading" secondItem="m1e-YS-qxs" secondAttribute="leading" id="vw1-BY-O5d"/>
+                            <constraint firstItem="eXY-dU-jhQ" firstAttribute="top" secondItem="m1e-YS-qxs" secondAttribute="bottom" constant="75" id="wrE-3h-cym"/>
+                            <constraint firstItem="YnC-Yv-hyR" firstAttribute="top" secondItem="lpS-cA-ksm" secondAttribute="bottom" constant="30" id="zcd-gf-tUU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="APY-jR-fD5"/>
+                    </view>
+                    <connections>
+                        <outlet property="FirstNameTextField" destination="YnC-Yv-hyR" id="FS1-XT-NOR"/>
+                        <outlet property="LastNameTextField" destination="99l-dX-gFt" id="hsL-M8-cbw"/>
+                        <outlet property="PasswordTextField" destination="T5T-5n-dLa" id="v7O-rc-2CI"/>
+                        <outlet property="UserNameTextField" destination="eXY-dU-jhQ" id="NXu-ED-aWq"/>
+                        <segue destination="7MW-x2-XQC" kind="showDetail" identifier="performSignUpTransition" id="n0z-FD-i9y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4kB-Bl-XdS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23" y="87"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="Irq-Fd-oqv">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="7MW-x2-XQC" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Jc4-De-n5I"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ech-wX-Fta" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="528" y="288"/>
+        </scene>
+    </scenes>
+</document>
