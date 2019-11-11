@@ -77,6 +77,7 @@ public class MapActivity extends AppCompatActivity {
     HashMap<String, View> viewMap = new HashMap<>();
     private int feature_ticker;
     private boolean currently_editing;
+    private Feature feature_editing;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,8 +181,17 @@ public class MapActivity extends AppCompatActivity {
                 add_marker = new MapboxMap.OnMapLongClickListener() {
                     @Override
                     public boolean onMapLongClick(@NonNull LatLng point) {
+                        PointF screenPoint = mapboxMap.getProjection().toScreenLocation(point);
+                        List<Feature> check_features = mapboxMap.queryRenderedFeatures(screenPoint, MARKER_LAYER_ID);
                         if(currently_editing)
                             return false;
+                        if(!check_features.isEmpty())
+                        {
+                            currently_editing = true;
+                            feature_editing = check_features.get(0);
+                            findViewById(R.id.insert_tit_desc).setVisibility(View.VISIBLE);
+                            return false;
+                        }
                         currently_editing = true;
                         Feature feat = Feature.fromGeometry(
                                 Point.fromLngLat(point.getLongitude(), point.getLatitude()));
@@ -194,6 +204,7 @@ public class MapActivity extends AppCompatActivity {
                             ft.addBooleanProperty("selected", false);
                         }
                         features.add(feat);
+                        feature_editing = feat;
                         mapboxMap.getStyle().addImage("marker-" + feature_ticker, fromLayoutToBM(feat));
                         GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
                         src.setGeoJson(FeatureCollection.fromFeatures(features));
@@ -206,14 +217,13 @@ public class MapActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         EditText editText = findViewById(R.id.input_description);
                         EditText titleText = findViewById(R.id.input_title);
-                        Feature feat = features.get(features.size() - 1);
-                        feat.addStringProperty("description", editText.getText().toString());
-                        feat.addStringProperty("title", titleText.getText().toString());
+                        feature_editing.addStringProperty("description", editText.getText().toString());
+                        feature_editing.addStringProperty("title", titleText.getText().toString());
                         findViewById(R.id.insert_tit_desc).setVisibility(View.INVISIBLE);
                         editText.setText("");
                         titleText.setText("");
                         currently_editing = false;
-                        mapboxMap.getStyle().addImage("marker-" + feature_ticker, fromLayoutToBM(feat));
+                        mapboxMap.getStyle().addImage(feature_editing.getStringProperty("marker_id"), fromLayoutToBM(feature_editing));
                     }
                 });
             }
