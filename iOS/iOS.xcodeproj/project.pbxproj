@@ -16,10 +16,10 @@
 		33498333233325C000B8A58C /* iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33498332233325C000B8A58C /* iOSTests.swift */; };
 		3349833E233325C000B8A58C /* iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3349833D233325C000B8A58C /* iOSUITests.swift */; };
 		33A8EBED2377B1F80003B190 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A8EBEC2377B1F80003B190 /* API.swift */; };
+		33A8EBF02377DDE00003B190 /* MapBoxView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33A8EBEF2377DDE00003B190 /* MapBoxView.storyboard */; };
+		33A8EBF22377DE080003B190 /* MapBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A8EBF12377DE080003B190 /* MapBoxViewController.swift */; };
 		33BE08F12334813200CBAD6D /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33BE08F02334813200CBAD6D /* Registration.storyboard */; };
 		33BE08F32334821B00CBAD6D /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE08F22334821B00CBAD6D /* RegistrationViewController.swift */; };
-		33BE08F52334831300CBAD6D /* MapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33BE08F42334831300CBAD6D /* MapView.storyboard */; };
-		33BE08F72334833D00CBAD6D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE08F62334833D00CBAD6D /* MapViewController.swift */; };
 		5B85D11C518A8F2A9E4F4658 /* libPods-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12BC1D804DEE76F7065864AE /* libPods-iOS.a */; };
 		68E7D2B68B817A3D2DB3D95A /* libPods-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3287E8FEBDCBE29A65C7C1 /* libPods-iOSTests.a */; };
 /* End PBXBuildFile section */
@@ -77,10 +77,10 @@
 		334983562333291D00B8A58C /* AirbnbCereal-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AirbnbCereal-Book.ttf"; sourceTree = "<group>"; };
 		334983572333291D00B8A58C /* AirbnbCereal-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AirbnbCereal-Medium.ttf"; sourceTree = "<group>"; };
 		33A8EBEC2377B1F80003B190 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = API.swift; path = ios/API.swift; sourceTree = SOURCE_ROOT; };
+		33A8EBEF2377DDE00003B190 /* MapBoxView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = MapBoxView.storyboard; path = ios/MapBoxView/MapBoxView.storyboard; sourceTree = SOURCE_ROOT; };
+		33A8EBF12377DE080003B190 /* MapBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapBoxViewController.swift; path = ios/MapBoxView/MapBoxViewController.swift; sourceTree = SOURCE_ROOT; };
 		33BE08F02334813200CBAD6D /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Registration.storyboard; path = ios/Login/Registration.storyboard; sourceTree = SOURCE_ROOT; };
 		33BE08F22334821B00CBAD6D /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationViewController.swift; path = ios/Login/RegistrationViewController.swift; sourceTree = SOURCE_ROOT; };
-		33BE08F42334831300CBAD6D /* MapView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = MapView.storyboard; path = ios/MapView/MapView.storyboard; sourceTree = SOURCE_ROOT; };
-		33BE08F62334833D00CBAD6D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ios/MapView/MapViewController.swift; sourceTree = SOURCE_ROOT; };
 		4ADE650A0DDE02223F45BBEC /* libPods-iOSUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F6CEA3DD4E0882EEFDD6775 /* Pods-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-iOSUITests/Pods-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		82064F23627DF0092DD854C5 /* Pods-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.debug.xcconfig"; path = "Target Support Files/Pods-iOS/Pods-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 		3349831C233325BF00B8A58C /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				33BE08EF2334810800CBAD6D /* MapView */,
+				33A8EBEE2377DDC60003B190 /* MapBoxView */,
 				33BE08EE233480C200CBAD6D /* Login */,
 				3349831D233325BF00B8A58C /* AppDelegate.swift */,
 				33498324233325C000B8A58C /* Assets.xcassets */,
@@ -182,6 +182,15 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
+		33A8EBEE2377DDC60003B190 /* MapBoxView */ = {
+			isa = PBXGroup;
+			children = (
+				33A8EBEF2377DDE00003B190 /* MapBoxView.storyboard */,
+				33A8EBF12377DE080003B190 /* MapBoxViewController.swift */,
+			);
+			path = MapBoxView;
+			sourceTree = "<group>";
+		};
 		33BE08EE233480C200CBAD6D /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,15 +200,6 @@
 				33BE08F22334821B00CBAD6D /* RegistrationViewController.swift */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		33BE08EF2334810800CBAD6D /* MapView */ = {
-			isa = PBXGroup;
-			children = (
-				33BE08F42334831300CBAD6D /* MapView.storyboard */,
-				33BE08F62334833D00CBAD6D /* MapViewController.swift */,
-			);
-			path = MapView;
 			sourceTree = "<group>";
 		};
 		A4B2BD791981BAC2413F37D8 /* Frameworks */ = {
@@ -336,8 +336,8 @@
 			files = (
 				33498328233325C000B8A58C /* LaunchScreen.storyboard in Resources */,
 				33BE08F12334813200CBAD6D /* Registration.storyboard in Resources */,
+				33A8EBF02377DDE00003B190 /* MapBoxView.storyboard in Resources */,
 				33498325233325C000B8A58C /* Assets.xcassets in Resources */,
-				33BE08F52334831300CBAD6D /* MapView.storyboard in Resources */,
 				33498323233325BF00B8A58C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,9 +450,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				33BE08F32334821B00CBAD6D /* RegistrationViewController.swift in Sources */,
+				33A8EBF22377DE080003B190 /* MapBoxViewController.swift in Sources */,
 				33498320233325BF00B8A58C /* LoginViewController.swift in Sources */,
 				3349831E233325BF00B8A58C /* AppDelegate.swift in Sources */,
-				33BE08F72334833D00CBAD6D /* MapViewController.swift in Sources */,
 				33A8EBED2377B1F80003B190 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

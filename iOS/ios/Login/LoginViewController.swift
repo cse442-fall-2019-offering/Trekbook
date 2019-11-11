@@ -50,8 +50,13 @@ class LoginViewController: UIViewController {
         // make call to API
         api_login(username: UsernameTextField.text ?? "", password: PasswordTextField.text ?? "") { (success) in
             if success {
+//                DispatchQueue.main.async {
+//                    self.performSegue(withIdentifier: "performLoginTransition", sender: self)
+//                }
                 DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "performLoginTransition", sender: self)
+                let storyboard = UIStoryboard(name: "MapBoxView", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "MapBoxViewController")
+                UIApplication.shared.keyWindow?.rootViewController = vc
                 }
             }
         }
