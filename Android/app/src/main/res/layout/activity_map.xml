@@ -23,6 +23,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+              
+              <Button
+                    android:id="@+id/logout_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="300dp"
+                    android:width="50dp"
+                    android:height="50dp"
+                    android:layout_weight="1"
+                    android:text="Logout" />
 
                 <EditText
                     android:id="@+id/input_title"

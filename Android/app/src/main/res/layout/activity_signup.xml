@@ -34,7 +34,7 @@
             app:layout_constraintTop_toBottomOf="@+id/regRecoveryAns" />
 
         <EditText
-            android:id="@+id/firstName"
+            android:id="@+id/regFirstName"
             android:layout_width="159dp"
             android:layout_height="52dp"
             android:layout_marginStart="32dp"
@@ -45,13 +45,13 @@
             android:inputType="textPersonName"
             android:textColor="@color/primaryText"
             android:fontFamily="@font/airbnbcereal_medium"
-            app:layout_constraintEnd_toStartOf="@+id/lastName"
+            app:layout_constraintEnd_toStartOf="@+id/regLastName"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/lastName"
+            android:id="@+id/regLastName"
             android:layout_width="159dp"
             android:layout_height="52dp"
             android:layout_marginStart="16dp"
@@ -59,14 +59,14 @@
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:ems="10"
+            android:fontFamily="@font/airbnbcereal_medium"
             android:hint="@string/last_name_hint"
             android:inputType="textPersonName"
             android:textColor="@color/primaryText"
-            android:fontFamily="@font/airbnbcereal_medium"
-            app:layout_constraintBottom_toBottomOf="@+id/firstName"
+            app:layout_constraintBottom_toBottomOf="@+id/regFirstName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/firstName" />
+            app:layout_constraintStart_toEndOf="@id/regFirstName" />
 
         <EditText
             android:id="@+id/regUserName"
@@ -85,7 +85,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/firstName" />
+            app:layout_constraintTop_toBottomOf="@+id/regFirstName" />
 
         <EditText
             android:id="@+id/regPassword"
@@ -126,7 +126,7 @@
             app:layout_constraintTop_toBottomOf="@+id/regPassword" />
 
         <Spinner
-            android:id="@+id/recPasswordSpinners"
+            android:id="@+id/regPasswordSpinners"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -157,7 +157,7 @@
             android:fontFamily="@font/airbnbcereal_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recPasswordSpinners" />
+            app:layout_constraintTop_toBottomOf="@+id/regPasswordSpinners" />
     </android.support.constraint.ConstraintLayout>
 
     <TextView
