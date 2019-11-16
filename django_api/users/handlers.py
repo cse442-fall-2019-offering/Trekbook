@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate
-from users.result_objects import LoginResult
+from users.result_objects import LoginResult, GetUserResult
 from users.exceptions import InvalidCredentialsException, DuplicateUserException
 from users.models import User
 
@@ -32,3 +32,12 @@ class SignupHandler:
         user = User.objects.create_user(username=username, password=password, **extra_params)
 
         return LoginResult(user)
+
+
+class GetUserHandler:
+
+    @staticmethod
+    def get_users(userid: int) -> GetUserResult:
+        users = User.objects.all().exclude(user_id=userid)
+
+        return GetUserResult(users)
