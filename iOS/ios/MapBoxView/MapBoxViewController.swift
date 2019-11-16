@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import Mapbox
 
+@available(iOS 13.0, *)
+@available(iOS 13.0, *)
+@available(iOS 13.0, *)
+@available(iOS 13.0, *)
 class MapBoxViewController: UIViewController, MGLMapViewDelegate {
     @IBOutlet weak var myProfileButton: UIButton!
     @IBOutlet weak var myFriendsButton: UIButton!
@@ -72,4 +76,11 @@ class MapBoxViewController: UIViewController, MGLMapViewDelegate {
         func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
             return true
         }
+    @IBAction func LogoutButtonPressed(_ sender: Any) {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            UIApplication.shared.keyWindow?.rootViewController = vc
+        }
+    }
 }
