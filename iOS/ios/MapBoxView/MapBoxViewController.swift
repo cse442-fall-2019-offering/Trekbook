@@ -11,6 +11,10 @@ import UIKit
 import Mapbox
 
 class MapBoxViewController: UIViewController, MGLMapViewDelegate {
+    @IBOutlet weak var myProfileButton: UIButton!
+    @IBOutlet weak var myFriendsButton: UIButton!
+    @IBOutlet weak var myLogoutButton: UIButton!
+    
     @IBOutlet weak var MapBoxView: MGLMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
