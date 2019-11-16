@@ -27,3 +27,15 @@ class LogoutResult(ApiResult):
         }
 
         return serialized
+
+
+class GetUserResult(ApiResult):
+    def __init__(self, users):
+        self.users = users
+
+    def serialize(self, version: int = 1) -> dict:
+        serialized = {
+            'users': [LoginResult(user).serialize() for user in self.users]
+        }
+
+        return serialized

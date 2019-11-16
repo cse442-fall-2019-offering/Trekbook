@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import View
-from users.handlers import LoginHandler, SignupHandler
+from users.handlers import LoginHandler, SignupHandler, GetUserHandler
 import json
-from users.result_objects import LoginResult, LogoutResult
+from users.result_objects import LoginResult, LogoutResult, GetUserResult
 
 
 class LoginView(View):
@@ -60,3 +60,15 @@ class LogoutView(View):
     def post(self, request, api_version, *args, **kwargs) -> LogoutResult:
 
         return LogoutResult()
+
+class GetUsersView(View):
+    """
+    handles URLs:
+        /v1/users [GET]
+    """
+
+    def get(self, request, api_version, *args, **kwargs) -> GetUserResult:
+
+        userid = int(request.query_params['user'])
+
+        return GetUserHandler.get_users(userid)
