@@ -1,28 +1,28 @@
-
-
 package com.example.android.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LoggedInUser {
+public class SignupRequestData {
 
-    @SerializedName("first_name")
+    @SerializedName("firstname")
     @Expose
     private String firstName;
-    @SerializedName("last_name")
+    @SerializedName("lastname")
     @Expose
     private String lastName;
     @SerializedName("username")
     @Expose
     private String username;
-    @SerializedName("user_id")
+    @SerializedName("password")
     @Expose
-    private String uid;
+    private String password;
 
-    public LoggedInUser(String id, String name){
-        this.uid = id;
-        this.firstName = name;
+    public SignupRequestData(String firstName, String lastName, String username, String password){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -49,19 +49,12 @@ public class LoggedInUser {
         this.username = username;
     }
 
-    public String getUid() {
-        return uid;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    @Override
-    public String toString(){
-        return "User: " + firstName + " " + lastName
-                + " with an id of: "+ uid +
-                " and a username of " + username;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

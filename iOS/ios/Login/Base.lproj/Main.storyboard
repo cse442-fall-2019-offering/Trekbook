@@ -16,7 +16,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,7 +63,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9m1-Bk-Yyj"/>
+                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WFj-YQ-U9W"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FpG-2h-Jku">
@@ -73,7 +73,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="MM8-Fu-yw7" kind="show" id="L3i-Hn-YhH"/>
+                                    <segue destination="MM8-Fu-yw7" kind="showDetail" id="L3i-Hn-YhH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -108,12 +108,12 @@
                         <outlet property="PasswordTextField" destination="0ft-DY-oOb" id="ZUp-50-n6b"/>
                         <outlet property="SignUpButton" destination="FpG-2h-Jku" id="paz-6N-mY8"/>
                         <outlet property="UsernameTextField" destination="cWF-LW-UNu" id="tVa-cH-Eic"/>
-                        <segue destination="JRD-kY-cbr" kind="showDetail" identifier="performLoginTransition" id="sU4-1S-T4v"/>
+                        <segue destination="jZw-Yo-dhC" kind="showDetail" identifier="performLoginTransition" id="qhz-89-CnO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="47.826086956521742" y="20.758928571428569"/>
+            <point key="canvasLocation" x="32" y="41"/>
         </scene>
         <!--RegistrationViewController-->
         <scene sceneID="qMx-Rn-Knn">
@@ -123,15 +123,15 @@
             </objects>
             <point key="canvasLocation" x="682" y="139"/>
         </scene>
-        <!--MapViewController-->
-        <scene sceneID="9uH-Ps-L8z">
+        <!--MapBoxViewController-->
+        <scene sceneID="ZHu-ed-xcV">
             <objects>
-                <viewControllerPlaceholder storyboardName="MapView" referencedIdentifier="MapViewController" id="JRD-kY-cbr" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Snn-Yc-3YE"/>
+                <viewControllerPlaceholder storyboardName="MapBoxView" referencedIdentifier="MapBoxViewController" id="jZw-Yo-dhC" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ZMV-lT-LDr"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="puy-oJ-BrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UEL-Hx-k3P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="664" y="192"/>
+            <point key="canvasLocation" x="704" y="202"/>
         </scene>
     </scenes>
     <resources>

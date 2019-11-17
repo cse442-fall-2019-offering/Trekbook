@@ -28,6 +28,7 @@
                 android:background="@color/cardview_dark_background"
                 android:orientation="horizontal">
 
+
                 <Button
                     android:id="@+id/logout_button"
                     android:layout_width="wrap_content"

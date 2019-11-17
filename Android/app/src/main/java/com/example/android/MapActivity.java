@@ -1,5 +1,7 @@
 package com.example.android;
 
+
+import android.content.Intent;
 import android.arch.core.util.Function;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,6 +82,14 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_map);
+        Button logoutButton = findViewById(R.id.logout_button);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToLogin = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(goToLogin);
+            }
+        });
         currently_editing = false;
         findViewById(R.id.insert_tit_desc).setVisibility(View.INVISIBLE);
         mapView = findViewById(R.id.mapView);
