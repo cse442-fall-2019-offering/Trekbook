@@ -3,6 +3,7 @@ package com.example.android;
 
 import android.content.Intent;
 import android.arch.core.util.Function;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -24,7 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.example.android.ui.login.LoginActivity;
 import com.mapbox.android.core.permissions.PermissionsManager;
@@ -91,12 +91,7 @@ public class MapActivity extends AppCompatActivity {
             }
         });
         currently_editing = false;
-        final EditText desc = findViewById(R.id.input_description);
-        desc.setVisibility(View.INVISIBLE);
-        final EditText title = findViewById(R.id.input_title);
-        title.setVisibility(View.INVISIBLE);
-        Button submit = (Button)findViewById(R.id.submit_marker);
-        submit.setVisibility(View.INVISIBLE);
+        findViewById(R.id.insert_tit_desc).setVisibility(View.INVISIBLE);
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(new OnMapReadyCallback() {
@@ -200,12 +195,7 @@ public class MapActivity extends AppCompatActivity {
                                 Point.fromLngLat(point.getLongitude(), point.getLatitude()));
                         feat.addBooleanProperty("selected", true);
                         feat.addStringProperty("marker_id", "marker-" + (++feature_ticker));
-                        EditText user_input = (EditText)findViewById(R.id.input_description);
-                        user_input.setVisibility(View.VISIBLE);
-                        EditText input_title = (EditText)findViewById(R.id.input_title);
-                        input_title.setVisibility(View.VISIBLE);
-                        Button submit = (Button)findViewById(R.id.submit_marker);
-                        submit.setVisibility(View.VISIBLE);
+                        findViewById(R.id.insert_tit_desc).setVisibility(View.VISIBLE);
                         feat.addStringProperty("description", "Add Description Above");
                         feat.addStringProperty("title", "Add Title Above");
                         for(Feature ft : features) {
@@ -227,10 +217,7 @@ public class MapActivity extends AppCompatActivity {
                         Feature feat = features.get(features.size() - 1);
                         feat.addStringProperty("description", editText.getText().toString());
                         feat.addStringProperty("title", titleText.getText().toString());
-                        Button submit = (Button)findViewById(R.id.submit_marker);
-                        submit.setVisibility(View.INVISIBLE);
-                        editText.setVisibility(View.INVISIBLE);
-                        titleText.setVisibility(View.INVISIBLE);
+                        findViewById(R.id.insert_tit_desc).setVisibility(View.INVISIBLE);
                         editText.setText("");
                         titleText.setText("");
                         currently_editing = false;
@@ -239,8 +226,38 @@ public class MapActivity extends AppCompatActivity {
                 });
             }
         });
-
-
+        Button profile = findViewById(R.id.profile_button);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (findViewById(R.id.profile_layer).getVisibility() == View.INVISIBLE) {
+                    findViewById(R.id.profile_layer).setVisibility(View.VISIBLE);
+                    findViewById(R.id.friends_layer).setVisibility(View.INVISIBLE);
+                }
+                else
+                    findViewById(R.id.profile_layer).setVisibility(View.INVISIBLE);
+            }
+        });
+        Button friends = findViewById(R.id.friends_button);
+        friends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (findViewById(R.id.friends_layer).getVisibility() == View.INVISIBLE) {
+                    findViewById(R.id.friends_layer).setVisibility(View.VISIBLE);
+                    findViewById(R.id.profile_layer).setVisibility(View.INVISIBLE);
+                }
+                else
+                    findViewById(R.id.friends_layer).setVisibility(View.INVISIBLE);
+            }
+        });
+        Button logoutButton = findViewById(R.id.logout_button);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToLogin = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(goToLogin);
+            }
+        });
     }
 
     private Bitmap fromLayoutToBM(Feature feat)
