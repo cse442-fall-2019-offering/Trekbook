@@ -82,14 +82,6 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_map);
-        Button logoutButton = findViewById(R.id.logout_button);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToLogin = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(goToLogin);
-            }
-        });
         currently_editing = false;
         findViewById(R.id.insert_tit_desc).setVisibility(View.INVISIBLE);
         mapView = findViewById(R.id.mapView);
