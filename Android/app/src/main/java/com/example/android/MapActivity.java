@@ -15,17 +15,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.data.model.LoggedInUser;
 import com.example.android.ui.login.LoginActivity;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.geojson.Feature;
@@ -66,6 +70,7 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconSize;
 public class MapActivity extends AppCompatActivity {
     private MapView mapView;
     private PermissionsManager permissionsManager;
+    public List<LoggedInUser> friends;
     private static final String MARKER_SOURCE_ID = "MARKER_SOURCE_ID";
     private static final String MARKER_ICON_ID = "MARKER_ICON_ID";
     private static final String MARKER_LAYER_ID = "MARKER_LAYER_ID";
@@ -216,6 +221,56 @@ public class MapActivity extends AppCompatActivity {
                         mapboxMap.getStyle().addImage("marker-" + feature_ticker, fromLayoutToBM(feat));
                     }
                 });
+                // Friends list verification
+                friends = new ArrayList<LoggedInUser>();
+                LoggedInUser george = new LoggedInUser("11", "George");
+                george.setLastName("Castanza");
+                george.setUsername("gcastanza");
+                LoggedInUser john = new LoggedInUser("12", "John");
+                john.setLastName("Bamburowski");
+                john.setUsername("jbambro");
+                friends.add(george);
+                LoggedInUser chuck = new LoggedInUser("13", "John");
+                john.setLastName("Bamburowski");
+                chuck.setUsername("chuck");
+                friends.add(chuck);
+                friends.add(john);
+                // friends contains mock-up friends that will be callable from api
+                // Setup their feature lists
+                final List<Feature> george_locs = new ArrayList<Feature>();
+                Feature home = Feature.fromJson("{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-56.990533,-30.583266]},\"properties\":{\"marker_id\":\"marker-15\",\"selected\":false,\"description\":\"MY NAME IS GEORGE CASTANZA\",\"title\":\"George is Home\"}}");
+                Feature work = Feature.fromJson("{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-55,-33.583266]},\"properties\":{\"marker_id\":\"marker-16\",\"selected\":false,\"description\":\"MY NAME IS GEORGE CASTANZA\",\"title\":\"George is WORK\"}}");
+                george_locs.add(home);
+                george_locs.add(work);
+                //
+                // Add the textviews for their friends as well as onclick update
+                LinearLayout friends_list = findViewById(R.id.friends_layer);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                params.setMargins(15, 15, 15, 5);
+                for(LoggedInUser friend: friends)
+                {
+                    TextView view = new TextView(getBaseContext(), null, 0, R.style.FriendsListFriend);
+                    view.setText(friend.getUsername());
+                    if(friend.getUsername() == "gcastanza")
+                        view.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                features = george_locs;
+                                for(Feature feat: features)
+                                {
+                                    mapboxMap.getStyle().addImage(feat.getStringProperty("marker_id"), fromLayoutToBM(feat));
+                                    GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
+                                    src.setGeoJson(FeatureCollection.fromFeatures(features));
+                                }
+                            }
+                        });
+                    view.setLayoutParams(params);
+                    friends_list.addView(view);
+                }
+                //
             }
         });
         Button profile = findViewById(R.id.profile_button);
@@ -234,12 +289,12 @@ public class MapActivity extends AppCompatActivity {
         friends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (findViewById(R.id.friends_layer).getVisibility() == View.INVISIBLE) {
-                    findViewById(R.id.friends_layer).setVisibility(View.VISIBLE);
+                if (findViewById(R.id.friends_scrollview).getVisibility() == View.INVISIBLE) {
+                    findViewById(R.id.friends_scrollview).setVisibility(View.VISIBLE);
                     findViewById(R.id.profile_layer).setVisibility(View.INVISIBLE);
                 }
                 else
-                    findViewById(R.id.friends_layer).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.friends_scrollview).setVisibility(View.INVISIBLE);
             }
         });
         Button logoutButton = findViewById(R.id.logout_button);

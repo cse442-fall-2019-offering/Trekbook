@@ -168,7 +168,7 @@
             </LinearLayout>
         </ScrollView>
         <ScrollView
-            android:id="@+id/friends_layer"
+            android:id="@+id/friends_scrollview"
             android:layout_width="250dp"
             android:layout_height="match_parent"
             android:layout_marginBottom="50dp"
@@ -177,6 +177,7 @@
             android:visibility="invisible"
             android:background="@color/background">
             <LinearLayout
+                android:id="@+id/friends_layer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
