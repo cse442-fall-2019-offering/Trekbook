@@ -29,7 +29,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.data.ApiService;
+import com.example.android.data.ApiSingleton;
 import com.example.android.data.model.LoggedInUser;
+import com.example.android.data.model.LoggedInUserPackage;
+import com.example.android.data.model.ManyLoggedInUsersPackage;
 import com.example.android.ui.login.LoginActivity;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.geojson.Feature;
@@ -60,6 +64,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.Inflater;
+
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAnchor;
@@ -221,6 +232,32 @@ public class MapActivity extends AppCompatActivity {
                         mapboxMap.getStyle().addImage("marker-" + feature_ticker, fromLayoutToBM(feat));
                     }
                 });
+
+                ApiService apiService = ApiSingleton.getInstance().getApiService();
+                Single<Response<ManyLoggedInUsersPackage>> testObservable= apiService.getOtherUsers(2);
+                testObservable.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new SingleObserver<Response<ManyLoggedInUsersPackage>>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
+                            }
+                            @Override
+                            public void onSuccess(Response<ManyLoggedInUsersPackage> userResponse) {
+                                if( userResponse.isSuccessful()){
+                                    populateFriendsList(userResponse.body().getListOfUsers());
+                                }
+                                else{
+                                    Log.e("Bad Server Resp", userResponse.toString());
+                                }
+
+                            }
+                            @Override
+                            public void onError(Throwable e) {
+                                //TODO: no connection to server message
+                                Log.e("No Server Resp", "No connnection to the server: " + e.toString());
+                            }
+                        });
+
                 // Friends list verification
                 friends = new ArrayList<LoggedInUser>();
                 LoggedInUser george = new LoggedInUser("11", "George");
@@ -244,32 +281,7 @@ public class MapActivity extends AppCompatActivity {
                 george_locs.add(work);
                 //
                 // Add the textviews for their friends as well as onclick update
-                LinearLayout friends_list = findViewById(R.id.friends_layer);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                );
-                params.setMargins(15, 15, 15, 5);
-                for(LoggedInUser friend: friends)
-                {
-                    TextView view = new TextView(getBaseContext(), null, 0, R.style.FriendsListFriend);
-                    view.setText(friend.getUsername());
-                    if(friend.getUsername() == "gcastanza")
-                        view.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                features = george_locs;
-                                for(Feature feat: features)
-                                {
-                                    mapboxMap.getStyle().addImage(feat.getStringProperty("marker_id"), fromLayoutToBM(feat));
-                                    GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
-                                    src.setGeoJson(FeatureCollection.fromFeatures(features));
-                                }
-                            }
-                        });
-                    view.setLayoutParams(params);
-                    friends_list.addView(view);
-                }
+
                 //
             }
         });
@@ -319,6 +331,22 @@ public class MapActivity extends AppCompatActivity {
         layout.setDrawingCacheEnabled(true);
         layout.buildDrawingCache();
         return layout.getDrawingCache();
+    }
+
+    private void populateFriendsList(List<LoggedInUser> users){
+        LinearLayout friends_list = findViewById(R.id.friends_layer);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(15, 15, 15, 5);
+        for(LoggedInUser friend: users)
+        {
+            TextView view = new TextView(getBaseContext(), null, 0, R.style.FriendsListFriend);
+            view.setText(friend.getUsername());
+            view.setLayoutParams(params);
+            friends_list.addView(view);
+        }
     }
 
     @Override
