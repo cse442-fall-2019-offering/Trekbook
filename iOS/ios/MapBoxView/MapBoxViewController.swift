@@ -28,6 +28,7 @@ class MapBoxViewController: UIViewController, MGLMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         MapBoxView.setCenter(CLLocationCoordinate2D(latitude: 40.7326808, longitude: -73.9843407), zoomLevel: 4, animated: false)
         
         MapBoxView.delegate = self
