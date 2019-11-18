@@ -4,6 +4,7 @@ package com.example.android;
 import android.content.Intent;
 import android.arch.core.util.Function;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -234,7 +235,10 @@ public class MapActivity extends AppCompatActivity {
                 });
 
                 ApiService apiService = ApiSingleton.getInstance().getApiService();
-                Single<Response<ManyLoggedInUsersPackage>> testObservable= apiService.getOtherUsers(2);
+                SharedPreferences sp = getSharedPreferences("UserInfo", MODE_PRIVATE);
+                int uid = sp.getInt("uid", 0);
+
+                Single<Response<ManyLoggedInUsersPackage>> testObservable= apiService.getOtherUsers(uid);
                 testObservable.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new SingleObserver<Response<ManyLoggedInUsersPackage>>() {
@@ -258,20 +262,7 @@ public class MapActivity extends AppCompatActivity {
                             }
                         });
 
-                // Friends list verification
-                friends = new ArrayList<LoggedInUser>();
-                LoggedInUser george = new LoggedInUser("11", "George");
-                george.setLastName("Castanza");
-                george.setUsername("gcastanza");
-                LoggedInUser john = new LoggedInUser("12", "John");
-                john.setLastName("Bamburowski");
-                john.setUsername("jbambro");
-                friends.add(george);
-                LoggedInUser chuck = new LoggedInUser("13", "John");
-                john.setLastName("Bamburowski");
-                chuck.setUsername("chuck");
-                friends.add(chuck);
-                friends.add(john);
+
                 // friends contains mock-up friends that will be callable from api
                 // Setup their feature lists
                 final List<Feature> george_locs = new ArrayList<Feature>();

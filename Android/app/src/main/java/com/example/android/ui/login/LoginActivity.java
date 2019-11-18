@@ -100,7 +100,13 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Response<LoggedInUserPackage> userResponse) {
                             if( userResponse.isSuccessful()){
-                                updateUiWithUser(userResponse.body().getLoggedInUser());
+                                SharedPreferences sp = getSharedPreferences("UserInfo", MODE_PRIVATE);
+                                SharedPreferences.Editor spE = sp.edit();
+
+                                LoggedInUser user = userResponse.body().getLoggedInUser();
+                                updateUiWithUser(user);
+                                spE.putInt("uid", user.getUid());
+                                spE.apply();
                                 Intent goToMap = new Intent(getApplicationContext(), MapActivity.class);
                                 startActivity(goToMap);
                             }
