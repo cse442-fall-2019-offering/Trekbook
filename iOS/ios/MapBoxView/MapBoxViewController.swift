@@ -18,8 +18,14 @@ class MapBoxViewController: UIViewController, MGLMapViewDelegate {
     @IBOutlet weak var myProfileButton: UIButton!
     @IBOutlet weak var myFriendsButton: UIButton!
     @IBOutlet weak var myLogoutButton: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var creatorLabel: UILabel!
     
     @IBOutlet weak var MapBoxView: MGLMapView!
+    
+    var delegate: MapBoxViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         MapBoxView.setCenter(CLLocationCoordinate2D(latitude: 40.7326808, longitude: -73.9843407), zoomLevel: 4, animated: false)
@@ -67,12 +73,6 @@ class MapBoxViewController: UIViewController, MGLMapViewDelegate {
             MapBoxView.addAnnotation(new_marker)
         }
      
-    //    // Use the default marker. See also: our view annotation or custom marker examples.
-    //    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-    //        return nil
-    //    }
-
-        // Allow callout view to appear when an annotation is tapped.
         func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
             return true
         }
@@ -83,4 +83,21 @@ class MapBoxViewController: UIViewController, MGLMapViewDelegate {
             UIApplication.shared.keyWindow?.rootViewController = vc
         }
     }
+}
+
+@available(iOS 13.0, *)
+extension MapBoxViewController: SidePanelViewControllerDelegate {
+  func didSelectFriend(_ friend: Friend) {
+    imageView.image = friend.image
+    titleLabel.text = friend.title
+    creatorLabel.text = friend.creator
+    
+    delegate?.collapseSidePanels()
+  }
+}
+
+protocol MapBoxViewControllerDelegate {
+  func toggleLeftPanel()
+  func toggleRightPanel()
+  func collapseSidePanels()
 }

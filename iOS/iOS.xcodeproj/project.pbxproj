@@ -22,6 +22,10 @@
 		33BE08F32334821B00CBAD6D /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE08F22334821B00CBAD6D /* RegistrationViewController.swift */; };
 		5B85D11C518A8F2A9E4F4658 /* libPods-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12BC1D804DEE76F7065864AE /* libPods-iOS.a */; };
 		68E7D2B68B817A3D2DB3D95A /* libPods-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3287E8FEBDCBE29A65C7C1 /* libPods-iOSTests.a */; };
+		F81D473B2383360A00C0266D /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D473A2383360A00C0266D /* Friends.swift */; };
+		F81D473D2383363600C0266D /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D473C2383363600C0266D /* FriendCell.swift */; };
+		F8202C4523824ACF00B8D0D8 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8202C4423824ACF00B8D0D8 /* ContainerViewController.swift */; };
+		F8202C4723824C5000B8D0D8 /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8202C4623824C5000B8D0D8 /* SidePanelViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +90,10 @@
 		82064F23627DF0092DD854C5 /* Pods-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.debug.xcconfig"; path = "Target Support Files/Pods-iOS/Pods-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDBB96C84FDF85CD6D05C7A /* Pods-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.release.xcconfig"; path = "Target Support Files/Pods-iOS/Pods-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		EF3287E8FEBDCBE29A65C7C1 /* libPods-iOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F81D473A2383360A00C0266D /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Friends.swift; path = ios/MapBoxView/Friends.swift; sourceTree = SOURCE_ROOT; };
+		F81D473C2383363600C0266D /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendCell.swift; path = ios/MapBoxView/FriendCell.swift; sourceTree = SOURCE_ROOT; };
+		F8202C4423824ACF00B8D0D8 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = ios/MapBoxView/ContainerViewController.swift; sourceTree = SOURCE_ROOT; };
+		F8202C4623824C5000B8D0D8 /* SidePanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SidePanelViewController.swift; path = ios/MapBoxView/SidePanelViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +195,10 @@
 			children = (
 				33A8EBEF2377DDE00003B190 /* MapBoxView.storyboard */,
 				33A8EBF12377DE080003B190 /* MapBoxViewController.swift */,
+				F8202C4423824ACF00B8D0D8 /* ContainerViewController.swift */,
+				F8202C4623824C5000B8D0D8 /* SidePanelViewController.swift */,
+				F81D473A2383360A00C0266D /* Friends.swift */,
+				F81D473C2383363600C0266D /* FriendCell.swift */,
 			);
 			path = MapBoxView;
 			sourceTree = "<group>";
@@ -453,6 +465,10 @@
 				33A8EBF22377DE080003B190 /* MapBoxViewController.swift in Sources */,
 				33498320233325BF00B8A58C /* LoginViewController.swift in Sources */,
 				3349831E233325BF00B8A58C /* AppDelegate.swift in Sources */,
+				F81D473B2383360A00C0266D /* Friends.swift in Sources */,
+				F81D473D2383363600C0266D /* FriendCell.swift in Sources */,
+				F8202C4723824C5000B8D0D8 /* SidePanelViewController.swift in Sources */,
+				F8202C4523824ACF00B8D0D8 /* ContainerViewController.swift in Sources */,
 				33A8EBED2377B1F80003B190 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
