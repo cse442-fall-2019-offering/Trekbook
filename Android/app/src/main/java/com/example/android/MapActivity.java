@@ -334,7 +334,7 @@ public class MapActivity extends AppCompatActivity {
         for(LoggedInUser friend: users)
         {
             TextView view = new TextView(getBaseContext(), null, 0, R.style.FriendsListFriend);
-            view.setText(friend.getUsername());
+            view.setText(friend.getFirstName());
             view.setLayoutParams(params);
             friends_list.addView(view);
         }

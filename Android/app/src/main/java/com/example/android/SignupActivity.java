@@ -1,6 +1,7 @@
 package com.example.android;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -118,7 +119,13 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Response<LoggedInUserPackage> userResponse) {
                         if( userResponse.isSuccessful()){
-                            updateUiWithUser(userResponse.body().getLoggedInUser());
+                            SharedPreferences sp = getSharedPreferences("UserInfo", MODE_PRIVATE);
+                            SharedPreferences.Editor spE = sp.edit();
+
+                            LoggedInUser user = userResponse.body().getLoggedInUser();
+                            updateUiWithUser(user);
+                            spE.putInt("uid", user.getUid());
+                            spE.apply();
                             Intent goToMap = new Intent(getApplicationContext(), MapActivity.class);
                             startActivity(goToMap);
                         }
