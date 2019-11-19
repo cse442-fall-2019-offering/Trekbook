@@ -41,33 +41,33 @@ struct Friend {
   
   static func allCats() -> [Friend] {
     return [
-      Friend(title: "Sleeping Cat", creator: "papaija2008", image: UIImage(named: "ID-100113060.jpg")),
-      Friend(title: "Pussy Cat", creator: "Carlos Porto", image: UIImage(named: "ID-10022760.jpg")),
-      Friend(title: "Korat Domestic Cat", creator: "sippakorn", image: UIImage(named: "ID-10091065.jpg")),
-      Friend(title: "Tabby Cat", creator: "dan", image: UIImage(named: "ID-10047796.jpg")),
-      Friend(title: "Yawning Cat", creator: "dan", image: UIImage(named: "ID-10092572.jpg")),
-      Friend(title: "Tabby Cat", creator: "dan", image: UIImage(named: "ID-10041194.jpg")),
-      Friend(title: "Cat On The Rocks", creator: "Willem Siers", image: UIImage(named: "ID-10017782.jpg")),
-      Friend(title: "Brown Cat Standing", creator: "aopsan", image: UIImage(named: "ID-10091745.jpg")),
-      Friend(title: "Burmese Cat", creator: "Rosemary Ratcliff", image: UIImage(named: "ID-10056941.jpg")),
-      Friend(title: "Cat", creator: "dan", image: UIImage(named: "ID-10019208.jpg")),
-      Friend(title: "Cat", creator: "graur codrin", image: UIImage(named: "ID-10011404.jpg"))
+//      Friend(title: "Sleeping Cat", creator: "papaija2008", image: UIImage(named: "ID-100113060.jpg")),
+//      Friend(title: "Pussy Cat", creator: "Carlos Porto", image: UIImage(named: "ID-10022760.jpg")),
+//      Friend(title: "Korat Domestic Cat", creator: "sippakorn", image: UIImage(named: "ID-10091065.jpg")),
+//      Friend(title: "Tabby Cat", creator: "dan", image: UIImage(named: "ID-10047796.jpg")),
+//      Friend(title: "Yawning Cat", creator: "dan", image: UIImage(named: "ID-10092572.jpg")),
+//      Friend(title: "Tabby Cat", creator: "dan", image: UIImage(named: "ID-10041194.jpg")),
+//      Friend(title: "Cat On The Rocks", creator: "Willem Siers", image: UIImage(named: "ID-10017782.jpg")),
+//      Friend(title: "Brown Cat Standing", creator: "aopsan", image: UIImage(named: "ID-10091745.jpg")),
+//      Friend(title: "Burmese Cat", creator: "Rosemary Ratcliff", image: UIImage(named: "ID-10056941.jpg")),
+//      Friend(title: "Cat", creator: "dan", image: UIImage(named: "ID-10019208.jpg")),
+//      Friend(title: "Cat", creator: "graur codrin", image: UIImage(named: "ID-10011404.jpg"))
     ]
   }
   
   static func allDogs() -> [Friend] {
     return [
-      Friend(title: "White Dog Portrait", creator: "photostock", image: UIImage(named: "ID-10034505.jpg")),
-      Friend(title: "Black Labrador Retriever", creator: "Michal Marcol", image: UIImage(named: "ID-1009881.jpg")),
-      Friend(title: "Anxious Dog", creator: "James Barker", image: UIImage(named: "ID-100120.jpg")),
-      Friend(title: "Husky Dog", creator: "James Barker", image: UIImage(named: "ID-100136.jpg")),
-      Friend(title: "Puppy", creator: "James Barker", image: UIImage(named: "ID-100140.jpg")),
-      Friend(title: "Black Labrador Puppy", creator: "James Barker", image: UIImage(named: "ID-10018395.jpg")),
-      Friend(title: "Yellow Labrador", creator: "m_bartosch", image: UIImage(named: "ID-10016005.jpg")),
-      Friend(title: "Black Labrador", creator: "Felixco, Inc.", image: UIImage(named: "ID-10012923.jpg")),
-      Friend(title: "Sleepy Dog", creator: "Maggie Smith", image: UIImage(named: "ID-10021769.jpg")),
-      Friend(title: "English Springer Spaniel Puppy", creator: "Tina Phillips", image: UIImage(named: "ID-10056667.jpg")),
-      Friend(title: "Intelligent Dog", creator: "James Barker", image: UIImage(named: "ID-100137.jpg"))
+//      Friend(title: "White Dog Portrait", creator: "photostock", image: UIImage(named: "ID-10034505.jpg")),
+//      Friend(title: "Black Labrador Retriever", creator: "Michal Marcol", image: UIImage(named: "ID-1009881.jpg")),
+//      Friend(title: "Anxious Dog", creator: "James Barker", image: UIImage(named: "ID-100120.jpg")),
+//      Friend(title: "Husky Dog", creator: "James Barker", image: UIImage(named: "ID-100136.jpg")),
+//      Friend(title: "Puppy", creator: "James Barker", image: UIImage(named: "ID-100140.jpg")),
+//      Friend(title: "Black Labrador Puppy", creator: "James Barker", image: UIImage(named: "ID-10018395.jpg")),
+//      Friend(title: "Yellow Labrador", creator: "m_bartosch", image: UIImage(named: "ID-10016005.jpg")),
+//      Friend(title: "Black Labrador", creator: "Felixco, Inc.", image: UIImage(named: "ID-10012923.jpg")),
+//      Friend(title: "Sleepy Dog", creator: "Maggie Smith", image: UIImage(named: "ID-10021769.jpg")),
+//      Friend(title: "English Springer Spaniel Puppy", creator: "Tina Phillips", image: UIImage(named: "ID-10056667.jpg")),
+//      Friend(title: "Intelligent Dog", creator: "James Barker", image: UIImage(named: "ID-100137.jpg"))
     ]
   }
 }

@@ -42,8 +42,9 @@ class SidePanelViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    tableView.reloadData()
+    // tableView.reloadData()
   }
+    
 }
 
 // MARK: Table View Data Source
@@ -57,6 +58,12 @@ extension SidePanelViewController: UITableViewDataSource {
     cell.configureForFriend(friends[indexPath.row])
     return cell
   }
+    // Create a standard header that includes the returned text.
+    func tableView(_ tableView: UITableView, titleForHeaderInSection
+                                section: Int) -> String? {
+        return "                    Friends List"
+    }
+  
 }
 
 // Mark: Table View Delegate
