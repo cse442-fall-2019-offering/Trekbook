@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		285EEBD1F69495F74801BC17 /* libPods-iOSUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ADE650A0DDE02223F45BBEC /* libPods-iOSUITests.a */; };
+		333620682385A72F003C2FAA /* DesignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333620672385A72F003C2FAA /* DesignView.swift */; };
 		3349831E233325BF00B8A58C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3349831D233325BF00B8A58C /* AppDelegate.swift */; };
 		33498320233325BF00B8A58C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3349831F233325BF00B8A58C /* LoginViewController.swift */; };
 		33498323233325BF00B8A58C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33498321233325BF00B8A58C /* Main.storyboard */; };
@@ -63,6 +64,7 @@
 		12BC1D804DEE76F7065864AE /* libPods-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F3A2837B4635FA526FCA45 /* Pods-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-iOSTests/Pods-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		267D181D8804D7FA0DC92DAF /* Pods-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSUITests.release.xcconfig"; path = "Target Support Files/Pods-iOSUITests/Pods-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		333620672385A72F003C2FAA /* DesignView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignView.swift; path = "../../../../../Desktop/bored-together/bored-together/bored-together/Main/ActivityHouse/DesignView.swift"; sourceTree = "<group>"; };
 		3349831A233325BF00B8A58C /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3349831D233325BF00B8A58C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3349831F233325BF00B8A58C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				F8202C4623824C5000B8D0D8 /* SidePanelViewController.swift */,
 				F81D473A2383360A00C0266D /* Friends.swift */,
 				F81D473C2383363600C0266D /* FriendCell.swift */,
+				333620672385A72F003C2FAA /* DesignView.swift */,
 			);
 			path = MapBoxView;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 			files = (
 				33BE08F32334821B00CBAD6D /* RegistrationViewController.swift in Sources */,
 				33A8EBF22377DE080003B190 /* MapBoxViewController.swift in Sources */,
+				333620682385A72F003C2FAA /* DesignView.swift in Sources */,
 				33498320233325BF00B8A58C /* LoginViewController.swift in Sources */,
 				3349831E233325BF00B8A58C /* AppDelegate.swift in Sources */,
 				F81D473B2383360A00C0266D /* Friends.swift in Sources */,

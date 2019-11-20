@@ -32,6 +32,10 @@ class FriendCell: UITableViewCell {
   @IBOutlet weak var friendImageView: UIImageView!
   @IBOutlet weak var imageNameLabel: UILabel!
   @IBOutlet weak var imageCreatorLabel: UILabel!
+    //get rid of these^
+    
+//    @IBOutlet var FriendImageView: UIImageView!
+    
   
   func configureForFriend(_ friend: Friend) {
     friendImageView.image = friend.image

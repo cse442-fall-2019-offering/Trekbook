@@ -48,7 +48,7 @@ class ContainerViewController: UIViewController {
   var leftViewController: SidePanelViewController?
   var rightViewController: SidePanelViewController?
   
-  let mapBoxPanelExpandedOffset: CGFloat = 90
+  let mapBoxPanelExpandedOffset: CGFloat = 60
   
   override func viewDidLoad() {
     super.viewDidLoad()
