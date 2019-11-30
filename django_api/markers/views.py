@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import View
 from markers.handlers import MarkerHandler
-from markers.result_objects import MarkerSubmissionResult
+from markers.result_objects import MarkerSubmissionResult, MarkerGetResult
 
 
 class MarkerView(View):
@@ -19,3 +19,9 @@ class MarkerView(View):
         userid = request.data.get('user_id')
 
         return MarkerHandler.submit_marker(title, description, latitude, longitude, user_id=userid)
+
+    def get(self, request, api_version, *args, **kwargs) -> MarkerGetResult:
+
+        userid = int(request.query_params['user'])
+
+        return MarkerHandler.get_markers(user_id=userid)
