@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		285EEBD1F69495F74801BC17 /* libPods-iOSUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ADE650A0DDE02223F45BBEC /* libPods-iOSUITests.a */; };
 		333620682385A72F003C2FAA /* DesignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333620672385A72F003C2FAA /* DesignView.swift */; };
+		3336206C23860E59003C2FAA /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3336206B23860E59003C2FAA /* UIExtensions.swift */; };
 		3349831E233325BF00B8A58C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3349831D233325BF00B8A58C /* AppDelegate.swift */; };
 		33498320233325BF00B8A58C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3349831F233325BF00B8A58C /* LoginViewController.swift */; };
 		33498323233325BF00B8A58C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33498321233325BF00B8A58C /* Main.storyboard */; };
@@ -65,7 +66,8 @@
 		13F3A2837B4635FA526FCA45 /* Pods-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-iOSTests/Pods-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		267D181D8804D7FA0DC92DAF /* Pods-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSUITests.release.xcconfig"; path = "Target Support Files/Pods-iOSUITests/Pods-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		333620672385A72F003C2FAA /* DesignView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignView.swift; path = "../../../../../Desktop/bored-together/bored-together/bored-together/Main/ActivityHouse/DesignView.swift"; sourceTree = "<group>"; };
-		3349831A233325BF00B8A58C /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3336206B23860E59003C2FAA /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIExtensions.swift; path = "../../../../../Desktop/bored-together/bored-together/bored-together/Main/UIExtensions.swift"; sourceTree = "<group>"; };
+		3349831A233325BF00B8A58C /* Trekbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trekbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3349831D233325BF00B8A58C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3349831F233325BF00B8A58C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		33498322233325BF00B8A58C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -142,7 +144,7 @@
 		3349831B233325BF00B8A58C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3349831A233325BF00B8A58C /* iOS.app */,
+				3349831A233325BF00B8A58C /* Trekbook.app */,
 				3349832E233325C000B8A58C /* iOSTests.xctest */,
 				33498339233325C000B8A58C /* iOSUITests.xctest */,
 			);
@@ -202,6 +204,7 @@
 				F81D473A2383360A00C0266D /* Friends.swift */,
 				F81D473C2383363600C0266D /* FriendCell.swift */,
 				333620672385A72F003C2FAA /* DesignView.swift */,
+				3336206B23860E59003C2FAA /* UIExtensions.swift */,
 			);
 			path = MapBoxView;
 			sourceTree = "<group>";
@@ -260,7 +263,7 @@
 			);
 			name = iOS;
 			productName = iOS;
-			productReference = 3349831A233325BF00B8A58C /* iOS.app */;
+			productReference = 3349831A233325BF00B8A58C /* Trekbook.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3349832D233325C000B8A58C /* iOSTests */ = {
@@ -469,6 +472,7 @@
 				333620682385A72F003C2FAA /* DesignView.swift in Sources */,
 				33498320233325BF00B8A58C /* LoginViewController.swift in Sources */,
 				3349831E233325BF00B8A58C /* AppDelegate.swift in Sources */,
+				3336206C23860E59003C2FAA /* UIExtensions.swift in Sources */,
 				F81D473B2383360A00C0266D /* Friends.swift in Sources */,
 				F81D473D2383363600C0266D /* FriendCell.swift in Sources */,
 				F8202C4723824C5000B8D0D8 /* SidePanelViewController.swift in Sources */,
@@ -656,7 +660,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tb.iOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Trekbook;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -674,7 +678,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tb.iOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Trekbook;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -28,10 +28,65 @@
 
 import UIKit
 
+class LeftPanelViewController: SidePanelViewController {
+    @IBOutlet weak var ProfileImage: UIView!
+    @IBOutlet weak var ProfileName: UILabel!
+    @IBOutlet weak var ProfileUsername: UILabel!
+    @IBOutlet weak var ProfileNumberVisited: UILabel!
+    
+    func updateProfile(){
+
+        ProfileName.text = User?.data.fullname
+        ProfileUsername.text = User?.data.username
+        ProfileNumberVisited.text = User?.data.numbervisited
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // tableView.reloadData()
+        updateProfile()
+      }
+}
+
+class RightPanelViewController: SidePanelViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var FriendTableView: UITableView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        FriendTableView.delegate = self
+        FriendTableView.dataSource = self
+        FriendTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
+        cell.configureForFriend((UserList?.data.users[indexPath.row])!)
+        cell.friendImage.image = UIImage(named: "hiclipart.com")
+        
+//        cell.friendNameLabel.text = "testing testing"
+//        cell.friendUsernameLabel.text = "ttttesting"
+        return cell
+      }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 135
+    }
+}
+
+
+
 class SidePanelViewController: UIViewController {
-  @IBOutlet weak var tableView: UITableView!
-  
-  var delegate: SidePanelViewControllerDelegate?
+    
+    var delegate: SidePanelViewControllerDelegate?
   
   var friends: [Friend]!
   
@@ -43,37 +98,41 @@ class SidePanelViewController: UIViewController {
     super.viewDidLoad()
     
     // tableView.reloadData()
+//    updateProfile()
   }
     
+
+    
+
 }
 
 // MARK: Table View Data Source
-extension SidePanelViewController: UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return friends.count
-  }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.FriendCell, for: indexPath) as! FriendCell
-    cell.configureForFriend(friends[indexPath.row])
-    return cell
-  }
-    // Create a standard header that includes the returned text.
-    func tableView(_ tableView: UITableView, titleForHeaderInSection
-                                section: Int) -> String? {
-        return "                    Friends List"
-    }
-  
-}
-
-// Mark: Table View Delegate
-
-extension SidePanelViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let friend = friends[indexPath.row]
-    delegate?.didSelectFriend(friend)
-  }
-}
+//extension SidePanelViewController: UITableViewDataSource {
+//  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//    return friends.count
+//  }
+//
+//  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//    let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.FriendCell, for: indexPath) as! FriendCell
+//    cell.configureForFriend(friends[indexPath.row])
+//    return cell
+//  }
+//    // Create a standard header that includes the returned text.
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection
+//                                section: Int) -> String? {
+//        return "                    Friends List"
+//    }
+//
+//}
+//
+//// Mark: Table View Delegate
+//
+//extension SidePanelViewController: UITableViewDelegate {
+//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    let friend = friends[indexPath.row]
+//    delegate?.didSelectFriend(friend)
+//  }
+//}
 
 protocol SidePanelViewControllerDelegate {
   func didSelectFriend(_ friend: Friend)

@@ -29,17 +29,27 @@
 import UIKit
 
 class FriendCell: UITableViewCell {
-  @IBOutlet weak var friendImageView: UIImageView!
-  @IBOutlet weak var imageNameLabel: UILabel!
-  @IBOutlet weak var imageCreatorLabel: UILabel!
-    //get rid of these^
     
-//    @IBOutlet var FriendImageView: UIImageView!
+    @IBOutlet weak var friendImage: UIImageView!
+    @IBOutlet weak var friendNameLabel: UILabel!
+    @IBOutlet weak var friendUsernameLabel: UILabel!
+    @IBOutlet weak var friendVisitedLabel: UILabel!
     
-  
-  func configureForFriend(_ friend: Friend) {
-    friendImageView.image = friend.image
-    imageNameLabel.text = friend.title
-    imageCreatorLabel.text = friend.creator
-  }
+
+    func configureForFriend(_ friend: UsersStruct.userData) {
+        friendNameLabel.text = friend.fullname
+        friendUsernameLabel.text = friend.username
+        friendVisitedLabel.text = friend.numbervisited
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
 }

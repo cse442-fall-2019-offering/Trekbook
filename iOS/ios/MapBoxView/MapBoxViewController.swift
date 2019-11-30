@@ -38,6 +38,7 @@ class MapBoxViewController: UIViewController, MGLMapViewDelegate {
             longPress.require(toFail: recognizer)
         }
         MapBoxView.addGestureRecognizer(longPress)
+        
     }
     
     @objc @IBAction func handleMapTap(sender: UILongPressGestureRecognizer) {

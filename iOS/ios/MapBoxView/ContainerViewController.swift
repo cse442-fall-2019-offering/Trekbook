@@ -122,6 +122,7 @@ extension ContainerViewController: MapBoxViewControllerDelegate {
         self.leftViewController = nil
       }
     }
+    
   }
   
   func toggleRightPanel() {

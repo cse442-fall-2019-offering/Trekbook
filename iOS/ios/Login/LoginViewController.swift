@@ -54,10 +54,15 @@ class LoginViewController: UIViewController {
 //                DispatchQueue.main.async {
 //                    self.performSegue(withIdentifier: "performLoginTransition", sender: self)
 //                }
-                DispatchQueue.main.async {
-                let storyboard = UIStoryboard(name: "MapBoxView", bundle: nil)
-                let containerViewController = ContainerViewController()
-                UIApplication.shared.keyWindow?.rootViewController = containerViewController
+                api_getusers(userid: (User?.data.userId)!, username: (User?.data.username)!) { (success) in
+                    if success {
+                        DispatchQueue.main.async {
+                        let storyboard = UIStoryboard(name: "MapBoxView", bundle: nil)
+                        let containerViewController = ContainerViewController()
+                        UIApplication.shared.keyWindow?.rootViewController = containerViewController
+                    }
+                }
+                
                 }
             }
         }
