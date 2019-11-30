@@ -1,6 +1,6 @@
 from trekbook_base.result_object import ApiResult
 from users.models import User
-
+import random
 
 class LoginResult(ApiResult):
     def __init__(self, user: User):
@@ -11,7 +11,9 @@ class LoginResult(ApiResult):
             'user_id': self.user.user_id,
             'first_name': self.user.firstname,
             'last_name': self.user.lastname,
-            'username': self.user.username
+            'username': self.user.username,
+            'fullname': self.user.firstname + " " + self.user.lastname,
+            'numbervisited': str(random.randint(1,30)) + " places visited"
         }
 
         return serialized

@@ -31,6 +31,7 @@ extension UIViewController {
     }
 }
 
+@available(iOS 13.0, *)
 class LoginViewController: UIViewController {
     @IBOutlet weak var LogoImageView: UIImageView!
     @IBOutlet weak var UsernameTextField: UITextField!
@@ -53,10 +54,15 @@ class LoginViewController: UIViewController {
 //                DispatchQueue.main.async {
 //                    self.performSegue(withIdentifier: "performLoginTransition", sender: self)
 //                }
-                DispatchQueue.main.async {
-                let storyboard = UIStoryboard(name: "MapBoxView", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "MapBoxViewController")
-                UIApplication.shared.keyWindow?.rootViewController = vc
+                api_getusers(userid: (User?.data.userId)!, username: (User?.data.username)!) { (success) in
+                    if success {
+                        DispatchQueue.main.async {
+                        let storyboard = UIStoryboard(name: "MapBoxView", bundle: nil)
+                        let containerViewController = ContainerViewController()
+                        UIApplication.shared.keyWindow?.rootViewController = containerViewController
+                    }
+                }
+                
                 }
             }
         }

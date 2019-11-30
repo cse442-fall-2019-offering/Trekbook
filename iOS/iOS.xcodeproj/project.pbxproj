@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		285EEBD1F69495F74801BC17 /* libPods-iOSUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ADE650A0DDE02223F45BBEC /* libPods-iOSUITests.a */; };
+		333620682385A72F003C2FAA /* DesignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333620672385A72F003C2FAA /* DesignView.swift */; };
+		3336206C23860E59003C2FAA /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3336206B23860E59003C2FAA /* UIExtensions.swift */; };
 		3349831E233325BF00B8A58C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3349831D233325BF00B8A58C /* AppDelegate.swift */; };
 		33498320233325BF00B8A58C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3349831F233325BF00B8A58C /* LoginViewController.swift */; };
 		33498323233325BF00B8A58C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33498321233325BF00B8A58C /* Main.storyboard */; };
@@ -22,6 +24,10 @@
 		33BE08F32334821B00CBAD6D /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE08F22334821B00CBAD6D /* RegistrationViewController.swift */; };
 		5B85D11C518A8F2A9E4F4658 /* libPods-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12BC1D804DEE76F7065864AE /* libPods-iOS.a */; };
 		68E7D2B68B817A3D2DB3D95A /* libPods-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3287E8FEBDCBE29A65C7C1 /* libPods-iOSTests.a */; };
+		F81D473B2383360A00C0266D /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D473A2383360A00C0266D /* Friends.swift */; };
+		F81D473D2383363600C0266D /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D473C2383363600C0266D /* FriendCell.swift */; };
+		F8202C4523824ACF00B8D0D8 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8202C4423824ACF00B8D0D8 /* ContainerViewController.swift */; };
+		F8202C4723824C5000B8D0D8 /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8202C4623824C5000B8D0D8 /* SidePanelViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +65,9 @@
 		12BC1D804DEE76F7065864AE /* libPods-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F3A2837B4635FA526FCA45 /* Pods-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-iOSTests/Pods-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		267D181D8804D7FA0DC92DAF /* Pods-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSUITests.release.xcconfig"; path = "Target Support Files/Pods-iOSUITests/Pods-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
-		3349831A233325BF00B8A58C /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		333620672385A72F003C2FAA /* DesignView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignView.swift; path = "../../../../../Desktop/bored-together/bored-together/bored-together/Main/ActivityHouse/DesignView.swift"; sourceTree = "<group>"; };
+		3336206B23860E59003C2FAA /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIExtensions.swift; path = "../../../../../Desktop/bored-together/bored-together/bored-together/Main/UIExtensions.swift"; sourceTree = "<group>"; };
+		3349831A233325BF00B8A58C /* Trekbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trekbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3349831D233325BF00B8A58C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3349831F233325BF00B8A58C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		33498322233325BF00B8A58C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,6 +94,10 @@
 		82064F23627DF0092DD854C5 /* Pods-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.debug.xcconfig"; path = "Target Support Files/Pods-iOS/Pods-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDBB96C84FDF85CD6D05C7A /* Pods-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.release.xcconfig"; path = "Target Support Files/Pods-iOS/Pods-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		EF3287E8FEBDCBE29A65C7C1 /* libPods-iOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F81D473A2383360A00C0266D /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Friends.swift; path = ios/MapBoxView/Friends.swift; sourceTree = SOURCE_ROOT; };
+		F81D473C2383363600C0266D /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendCell.swift; path = ios/MapBoxView/FriendCell.swift; sourceTree = SOURCE_ROOT; };
+		F8202C4423824ACF00B8D0D8 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = ios/MapBoxView/ContainerViewController.swift; sourceTree = SOURCE_ROOT; };
+		F8202C4623824C5000B8D0D8 /* SidePanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SidePanelViewController.swift; path = ios/MapBoxView/SidePanelViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +144,7 @@
 		3349831B233325BF00B8A58C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3349831A233325BF00B8A58C /* iOS.app */,
+				3349831A233325BF00B8A58C /* Trekbook.app */,
 				3349832E233325C000B8A58C /* iOSTests.xctest */,
 				33498339233325C000B8A58C /* iOSUITests.xctest */,
 			);
@@ -187,6 +199,12 @@
 			children = (
 				33A8EBEF2377DDE00003B190 /* MapBoxView.storyboard */,
 				33A8EBF12377DE080003B190 /* MapBoxViewController.swift */,
+				F8202C4423824ACF00B8D0D8 /* ContainerViewController.swift */,
+				F8202C4623824C5000B8D0D8 /* SidePanelViewController.swift */,
+				F81D473A2383360A00C0266D /* Friends.swift */,
+				F81D473C2383363600C0266D /* FriendCell.swift */,
+				333620672385A72F003C2FAA /* DesignView.swift */,
+				3336206B23860E59003C2FAA /* UIExtensions.swift */,
 			);
 			path = MapBoxView;
 			sourceTree = "<group>";
@@ -245,7 +263,7 @@
 			);
 			name = iOS;
 			productName = iOS;
-			productReference = 3349831A233325BF00B8A58C /* iOS.app */;
+			productReference = 3349831A233325BF00B8A58C /* Trekbook.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3349832D233325C000B8A58C /* iOSTests */ = {
@@ -451,8 +469,14 @@
 			files = (
 				33BE08F32334821B00CBAD6D /* RegistrationViewController.swift in Sources */,
 				33A8EBF22377DE080003B190 /* MapBoxViewController.swift in Sources */,
+				333620682385A72F003C2FAA /* DesignView.swift in Sources */,
 				33498320233325BF00B8A58C /* LoginViewController.swift in Sources */,
 				3349831E233325BF00B8A58C /* AppDelegate.swift in Sources */,
+				3336206C23860E59003C2FAA /* UIExtensions.swift in Sources */,
+				F81D473B2383360A00C0266D /* Friends.swift in Sources */,
+				F81D473D2383363600C0266D /* FriendCell.swift in Sources */,
+				F8202C4723824C5000B8D0D8 /* SidePanelViewController.swift in Sources */,
+				F8202C4523824ACF00B8D0D8 /* ContainerViewController.swift in Sources */,
 				33A8EBED2377B1F80003B190 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -636,7 +660,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tb.iOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Trekbook;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -654,7 +678,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tb.iOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Trekbook;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
