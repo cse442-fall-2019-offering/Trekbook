@@ -156,6 +156,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center_horizontal"
                     android:textSize="24sp"
+                    android:id="@+id/profile_name"
                     android:text="Jon Snow"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -164,6 +165,7 @@
                     android:layout_marginTop="40dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
+                    android:id="@+id/profile_desc"
                     android:text="@string/input_bio"/>
             </LinearLayout>
         </ScrollView>

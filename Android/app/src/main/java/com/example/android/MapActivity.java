@@ -237,7 +237,12 @@ public class MapActivity extends AppCompatActivity {
                 ApiService apiService = ApiSingleton.getInstance().getApiService();
                 SharedPreferences sp = getSharedPreferences("UserInfo", MODE_PRIVATE);
                 int uid = sp.getInt("uid", 0);
-
+                String firstName = sp.getString("first_name", "Jon");
+                String lastName = sp.getString("last_name", "Snow");
+                String nameAsAppears = firstName + " " + lastName;
+                ((TextView)(findViewById(R.id.profile_name))).setText(nameAsAppears);
+                String username = sp.getString("username", "jsnow");
+                ((TextView)(findViewById(R.id.profile_desc))).setText(username);
                 Single<Response<ManyLoggedInUsersPackage>> testObservable= apiService.getOtherUsers(uid);
                 testObservable.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
