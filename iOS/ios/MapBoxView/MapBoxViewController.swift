@@ -39,6 +39,25 @@ class MapBoxViewController: UIViewController, MGLMapViewDelegate {
         }
         MapBoxView.addGestureRecognizer(longPress)
         
+        display_markers(userid: (User?.data.userId)!)
+    }
+    
+    func display_markers(userid: Int) {
+        api_get_markers(userid: userid) { (success) in
+            if success {
+                for marker in (MarkersList?.data.markers)! {
+                    var new_marker = MGLPointAnnotation()
+                    var tapCoord = CLLocationCoordinate2D()
+                    tapCoord.latitude = CLLocationDegrees(marker.latitude)
+                    tapCoord.longitude = CLLocationDegrees(marker.longitude)
+                    new_marker.coordinate = tapCoord
+                    new_marker.title = marker.title
+                    new_marker.subtitle = marker.description
+                    
+                    self.MapBoxView.addAnnotation(new_marker)
+                }
+            }
+        }
     }
     
     @objc @IBAction func handleMapTap(sender: UILongPressGestureRecognizer) {
@@ -56,6 +75,12 @@ class MapBoxViewController: UIViewController, MGLMapViewDelegate {
                 let activity_details = activity_desc.textFields![1].text!
                 new_marker.title = activity_title
                 new_marker.subtitle = activity_details
+                
+                api_submit_marker(userid: (User?.data.userId)!, title: new_marker.title ?? "", description: new_marker.subtitle ?? "", latitude: Float(tapCoordinate.latitude), longitude: Float(tapCoordinate.longitude)) { (success) in
+                    if success {
+                        print("marker added!")
+                    }
+                }
             })
             
             activity_desc.addTextField { (textField) in
@@ -73,6 +98,7 @@ class MapBoxViewController: UIViewController, MGLMapViewDelegate {
             
             
             MapBoxView.addAnnotation(new_marker)
+            
         }
      
         func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
