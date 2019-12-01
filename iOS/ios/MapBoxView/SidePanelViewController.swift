@@ -70,7 +70,7 @@ class RightPanelViewController: SidePanelViewController, UITableViewDelegate, UI
       }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return (UserList?.data.users.count)!
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

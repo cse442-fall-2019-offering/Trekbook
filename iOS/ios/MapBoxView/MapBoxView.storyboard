@@ -34,6 +34,9 @@
                                 <state key="normal" title="friends">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="MyFriendsPressed:" destination="H8c-xL-O1r" eventType="touchUpInside" id="33Y-xK-eUf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFd-wg-nlp">
                                 <rect key="frame" x="38" y="823" width="92" height="39"/>
@@ -41,6 +44,9 @@
                                 <state key="normal" title="my profile">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="MyProfilePressed:" destination="H8c-xL-O1r" eventType="touchUpInside" id="yEw-uf-Wam"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwp-pb-Pmc">
                                 <rect key="frame" x="313" y="55" width="61" height="39"/>

@@ -196,6 +196,8 @@ extension ContainerViewController: MapBoxViewControllerDelegate {
       mapBoxNavigationController.view.layer.shadowOpacity = 0.0
     }
   }
+    
+    
 }
 
 // MARK: Gesture recognizer
