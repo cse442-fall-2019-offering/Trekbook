@@ -35,6 +35,7 @@ import com.example.android.data.ApiSingleton;
 import com.example.android.data.model.LoggedInUser;
 import com.example.android.data.model.LoggedInUserPackage;
 import com.example.android.data.model.ManyLoggedInUsersPackage;
+import com.example.android.data.model.PinSaveData;
 import com.example.android.ui.login.LoginActivity;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.geojson.Feature;
@@ -106,6 +107,10 @@ public class MapActivity extends AppCompatActivity {
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull final MapboxMap mapboxMap) {
+                final ApiService apiService = ApiSingleton.getInstance().getApiService();
+                SharedPreferences sp = getSharedPreferences("UserInfo", MODE_PRIVATE);
+                final int uid = sp.getInt("uid", 0);
+
                 features = new ArrayList<>();
                 features.add(Feature.fromGeometry(
                         Point.fromLngLat(40.73581, -33.213144)));
@@ -218,25 +223,55 @@ public class MapActivity extends AppCompatActivity {
                     }
                 };
                 mapboxMap.addOnMapLongClickListener(add_marker);
+
+
+
                 ((Button)findViewById(R.id.submit_marker)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        EditText editText = findViewById(R.id.input_description);
-                        EditText titleText = findViewById(R.id.input_title);
+                        EditText descriptionInput = findViewById(R.id.input_description);
+                        EditText titleInput = findViewById(R.id.input_title);
                         Feature feat = features.get(features.size() - 1);
-                        feat.addStringProperty("description", editText.getText().toString());
-                        feat.addStringProperty("title", titleText.getText().toString());
+                        String descriptionText = descriptionInput.getText().toString();
+                        String titleText = titleInput.getText().toString();
+                        double lat = ((Point) feat.geometry()).latitude();
+                        double lng = ((Point) feat.geometry()).longitude();
+                        PinSaveData pinData = new PinSaveData(uid, titleText, descriptionText,
+                                lat, lng);
+
+                        Single<Response<ManyLoggedInUsersPackage>> testObservable= apiService.savePin(pinData);
+                        testObservable.subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(new SingleObserver<Response<ManyLoggedInUsersPackage>>() {
+                                    @Override
+                                    public void onSubscribe(Disposable d) {
+                                    }
+                                    @Override
+                                    public void onSuccess(Response<ManyLoggedInUsersPackage> pinSaveResponse) {
+                                        if( pinSaveResponse.isSuccessful()){
+                                            Log.i("Pin saved", pinSaveResponse.toString());
+                                        }
+                                        else{
+                                            Log.e("Bad Server Resp", pinSaveResponse.toString());
+                                        }
+
+                                    }
+                                    @Override
+                                    public void onError(Throwable e) {
+                                        //TODO: no connection to server message
+                                        Log.e("No Server Resp", "No connnection to the server: " + e.toString());
+                                    }
+                                });
+
+                        feat.addStringProperty("description", descriptionText);
+                        feat.addStringProperty("title", titleText);
                         findViewById(R.id.insert_tit_desc).setVisibility(View.INVISIBLE);
-                        editText.setText("");
-                        titleText.setText("");
+                        descriptionInput.setText("");
+                        titleInput.setText("");
                         currently_editing = false;
                         mapboxMap.getStyle().addImage("marker-" + feature_ticker, fromLayoutToBM(feat));
                     }
                 });
-
-                ApiService apiService = ApiSingleton.getInstance().getApiService();
-                SharedPreferences sp = getSharedPreferences("UserInfo", MODE_PRIVATE);
-                int uid = sp.getInt("uid", 0);
 
                 Single<Response<ManyLoggedInUsersPackage>> testObservable= apiService.getOtherUsers(uid);
                 testObservable.subscribeOn(Schedulers.io())

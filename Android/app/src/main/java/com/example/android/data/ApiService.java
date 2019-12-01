@@ -4,6 +4,7 @@ import com.example.android.data.model.LoggedInUser;
 import com.example.android.data.model.LoggedInUserPackage;
 import com.example.android.data.model.LoginRequestData;
 import com.example.android.data.model.ManyLoggedInUsersPackage;
+import com.example.android.data.model.PinSaveData;
 import com.example.android.data.model.SignupRequestData;
 
 //TODO: we want to use reactive
@@ -26,4 +27,10 @@ public interface ApiService {
 
     @GET("v1/users")
     Single<Response<ManyLoggedInUsersPackage>> getOtherUsers(@Query("user") int uid);
+
+    @GET("v1/marker")
+    Single<Response<ManyLoggedInUsersPackage>> getPins(@Query("user") int uid);
+
+    @POST("v1/marker")
+    Single<Response<ManyLoggedInUsersPackage>> savePin(@Body PinSaveData req);
 }
