@@ -248,7 +248,27 @@ public class MapActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Response<ManyLoggedInUsersPackage> userResponse) {
                                 if( userResponse.isSuccessful()){
-                                    populateFriendsList(userResponse.body().getListOfUsers());
+                                    LinearLayout friends_list = findViewById(R.id.friends_layer);
+                                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                            LinearLayout.LayoutParams.MATCH_PARENT,
+                                            LinearLayout.LayoutParams.WRAP_CONTENT
+                                    );
+                                    params.setMargins(15, 15, 15, 5);
+                                    for(LoggedInUser friend: userResponse.body().getListOfUsers())
+                                    {
+                                        TextView view = new TextView(getBaseContext(), null, 0, R.style.FriendsListFriend);
+                                        view.setText(friend.getFirstName());
+                                        view.setLayoutParams(params);
+                                        view.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                features = new ArrayList<Feature>();
+                                                GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
+                                                src.setGeoJson(FeatureCollection.fromFeatures(features));
+                                            }
+                                        });
+                                        friends_list.addView(view);
+                                    }
                                 }
                                 else{
                                     Log.e("Bad Server Resp", userResponse.toString());
@@ -282,7 +302,7 @@ public class MapActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (findViewById(R.id.profile_layer).getVisibility() == View.INVISIBLE) {
                     findViewById(R.id.profile_layer).setVisibility(View.VISIBLE);
-                    findViewById(R.id.friends_layer).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.friends_scrollview).setVisibility(View.INVISIBLE);
                 }
                 else
                     findViewById(R.id.profile_layer).setVisibility(View.INVISIBLE);
@@ -324,21 +344,7 @@ public class MapActivity extends AppCompatActivity {
         return layout.getDrawingCache();
     }
 
-    private void populateFriendsList(List<LoggedInUser> users){
-        LinearLayout friends_list = findViewById(R.id.friends_layer);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        params.setMargins(15, 15, 15, 5);
-        for(LoggedInUser friend: users)
-        {
-            TextView view = new TextView(getBaseContext(), null, 0, R.style.FriendsListFriend);
-            view.setText(friend.getFirstName());
-            view.setLayoutParams(params);
-            friends_list.addView(view);
-        }
-    }
+
 
     @Override
     public void onStart() {
