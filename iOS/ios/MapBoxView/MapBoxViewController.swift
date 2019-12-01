@@ -111,6 +111,15 @@ class MapBoxViewController: UIViewController, MGLMapViewDelegate {
             UIApplication.shared.keyWindow?.rootViewController = vc
         }
     }
+    
+    @IBAction func MyProfilePressed(_ sender: Any) {
+        delegate?.toggleLeftPanel()
+    }
+    
+    @IBAction func MyFriendsPressed(_ sender: Any) {
+        delegate?.toggleRightPanel()
+    }
+    
 }
 
 @available(iOS 13.0, *)
@@ -122,6 +131,8 @@ extension MapBoxViewController: SidePanelViewControllerDelegate {
     
     delegate?.collapseSidePanels()
   }
+    
+    
 }
 
 protocol MapBoxViewControllerDelegate {
