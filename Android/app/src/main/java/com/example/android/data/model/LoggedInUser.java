@@ -18,9 +18,9 @@ public class LoggedInUser {
     private String username;
     @SerializedName("user_id")
     @Expose
-    private String uid;
+    private int uid;
 
-    public LoggedInUser(String id, String name){
+    public LoggedInUser(int id, String name){
         this.uid = id;
         this.firstName = name;
     }
@@ -49,11 +49,11 @@ public class LoggedInUser {
         this.username = username;
     }
 
-    public String getUid() {
+    public int getUid() {
         return uid;
     }
 
-    public void setUid(String uid) {
+    public void setUid(int uid) {
         this.uid = uid;
     }
 

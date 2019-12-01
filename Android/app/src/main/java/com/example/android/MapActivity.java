@@ -4,6 +4,7 @@ package com.example.android;
 import android.content.Intent;
 import android.arch.core.util.Function;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -15,17 +16,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.data.ApiService;
+import com.example.android.data.ApiSingleton;
+import com.example.android.data.model.LoggedInUser;
+import com.example.android.data.model.LoggedInUserPackage;
+import com.example.android.data.model.ManyLoggedInUsersPackage;
 import com.example.android.ui.login.LoginActivity;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.geojson.Feature;
@@ -57,6 +66,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.zip.Inflater;
 
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
+
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAnchor;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
@@ -66,6 +82,7 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconSize;
 public class MapActivity extends AppCompatActivity {
     private MapView mapView;
     private PermissionsManager permissionsManager;
+    public List<LoggedInUser> friends;
     private static final String MARKER_SOURCE_ID = "MARKER_SOURCE_ID";
     private static final String MARKER_ICON_ID = "MARKER_ICON_ID";
     private static final String MARKER_LAYER_ID = "MARKER_LAYER_ID";
@@ -216,6 +233,71 @@ public class MapActivity extends AppCompatActivity {
                         mapboxMap.getStyle().addImage("marker-" + feature_ticker, fromLayoutToBM(feat));
                     }
                 });
+
+                ApiService apiService = ApiSingleton.getInstance().getApiService();
+                SharedPreferences sp = getSharedPreferences("UserInfo", MODE_PRIVATE);
+                int uid = sp.getInt("uid", 0);
+
+                Single<Response<ManyLoggedInUsersPackage>> testObservable= apiService.getOtherUsers(uid);
+                testObservable.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new SingleObserver<Response<ManyLoggedInUsersPackage>>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
+                            }
+                            @Override
+                            public void onSuccess(Response<ManyLoggedInUsersPackage> userResponse) {
+                                if( userResponse.isSuccessful()){
+                                    LinearLayout friends_list = findViewById(R.id.friends_layer);
+                                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                            LinearLayout.LayoutParams.MATCH_PARENT,
+                                            LinearLayout.LayoutParams.WRAP_CONTENT
+                                    );
+                                    params.setMargins(15, 15, 15, 5);
+                                    for(LoggedInUser friend: userResponse.body().getListOfUsers())
+                                    {
+                                        TextView view = new TextView(getBaseContext(), null, 0, R.style.FriendsListFriend);
+                                        view.setText(friend.getFirstName());
+                                        view.setLayoutParams(params);
+                                        view.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                features = new ArrayList<Feature>();
+                                                GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
+                                                src.setGeoJson(FeatureCollection.fromFeatures(features));
+                                                findViewById(R.id.insert_tit_desc).setVisibility(View.INVISIBLE);
+                                                ((TextView)(findViewById(R.id.input_description))).setText("");
+                                                ((TextView)(findViewById(R.id.input_title))).setText("");
+                                                currently_editing = false;
+                                            }
+                                        });
+                                        friends_list.addView(view);
+                                    }
+                                }
+                                else{
+                                    Log.e("Bad Server Resp", userResponse.toString());
+                                }
+
+                            }
+                            @Override
+                            public void onError(Throwable e) {
+                                //TODO: no connection to server message
+                                Log.e("No Server Resp", "No connnection to the server: " + e.toString());
+                            }
+                        });
+
+
+                // friends contains mock-up friends that will be callable from api
+                // Setup their feature lists
+                final List<Feature> george_locs = new ArrayList<Feature>();
+                Feature home = Feature.fromJson("{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-56.990533,-30.583266]},\"properties\":{\"marker_id\":\"marker-15\",\"selected\":false,\"description\":\"MY NAME IS GEORGE CASTANZA\",\"title\":\"George is Home\"}}");
+                Feature work = Feature.fromJson("{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-55,-33.583266]},\"properties\":{\"marker_id\":\"marker-16\",\"selected\":false,\"description\":\"MY NAME IS GEORGE CASTANZA\",\"title\":\"George is WORK\"}}");
+                george_locs.add(home);
+                george_locs.add(work);
+                //
+                // Add the textviews for their friends as well as onclick update
+
+                //
             }
         });
         Button profile = findViewById(R.id.profile_button);
@@ -224,7 +306,7 @@ public class MapActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (findViewById(R.id.profile_layer).getVisibility() == View.INVISIBLE) {
                     findViewById(R.id.profile_layer).setVisibility(View.VISIBLE);
-                    findViewById(R.id.friends_layer).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.friends_scrollview).setVisibility(View.INVISIBLE);
                 }
                 else
                     findViewById(R.id.profile_layer).setVisibility(View.INVISIBLE);
@@ -234,12 +316,12 @@ public class MapActivity extends AppCompatActivity {
         friends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (findViewById(R.id.friends_layer).getVisibility() == View.INVISIBLE) {
-                    findViewById(R.id.friends_layer).setVisibility(View.VISIBLE);
+                if (findViewById(R.id.friends_scrollview).getVisibility() == View.INVISIBLE) {
+                    findViewById(R.id.friends_scrollview).setVisibility(View.VISIBLE);
                     findViewById(R.id.profile_layer).setVisibility(View.INVISIBLE);
                 }
                 else
-                    findViewById(R.id.friends_layer).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.friends_scrollview).setVisibility(View.INVISIBLE);
             }
         });
         Button logoutButton = findViewById(R.id.logout_button);
@@ -265,6 +347,8 @@ public class MapActivity extends AppCompatActivity {
         layout.buildDrawingCache();
         return layout.getDrawingCache();
     }
+
+
 
     @Override
     public void onStart() {
