@@ -56,6 +56,12 @@ class MapBoxViewController: UIViewController, MGLMapViewDelegate {
                 let activity_details = activity_desc.textFields![1].text!
                 new_marker.title = activity_title
                 new_marker.subtitle = activity_details
+                
+                api_submit_marker(userid: (User?.data.userId)!, title: new_marker.title ?? "", description: new_marker.subtitle ?? "", latitude: Float(tapCoordinate.latitude), longitude: Float(tapCoordinate.longitude)) { (success) in
+                    if success {
+                        print("marker added!")
+                    }
+                }
             })
             
             activity_desc.addTextField { (textField) in
@@ -73,6 +79,7 @@ class MapBoxViewController: UIViewController, MGLMapViewDelegate {
             
             
             MapBoxView.addAnnotation(new_marker)
+            
         }
      
         func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
