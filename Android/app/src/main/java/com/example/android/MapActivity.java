@@ -265,6 +265,10 @@ public class MapActivity extends AppCompatActivity {
                                                 features = new ArrayList<Feature>();
                                                 GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
                                                 src.setGeoJson(FeatureCollection.fromFeatures(features));
+                                                findViewById(R.id.insert_tit_desc).setVisibility(View.INVISIBLE);
+                                                ((TextView)(findViewById(R.id.input_description))).setText("");
+                                                ((TextView)(findViewById(R.id.input_title))).setText("");
+                                                currently_editing = false;
                                             }
                                         });
                                         friends_list.addView(view);
