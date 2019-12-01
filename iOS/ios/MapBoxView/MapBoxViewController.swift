@@ -39,6 +39,25 @@ class MapBoxViewController: UIViewController, MGLMapViewDelegate {
         }
         MapBoxView.addGestureRecognizer(longPress)
         
+        display_markers(userid: (User?.data.userId)!)
+    }
+    
+    func display_markers(userid: Int) {
+        api_get_markers(userid: userid) { (success) in
+            if success {
+                for marker in (MarkersList?.data.markers)! {
+                    var new_marker = MGLPointAnnotation()
+                    var tapCoord = CLLocationCoordinate2D()
+                    tapCoord.latitude = CLLocationDegrees(marker.latitude)
+                    tapCoord.longitude = CLLocationDegrees(marker.longitude)
+                    new_marker.coordinate = tapCoord
+                    new_marker.title = marker.title
+                    new_marker.subtitle = marker.description
+                    
+                    self.MapBoxView.addAnnotation(new_marker)
+                }
+            }
+        }
     }
     
     @objc @IBAction func handleMapTap(sender: UILongPressGestureRecognizer) {
