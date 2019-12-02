@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AirbnbCereal-Book.ttf">
+            <string>AirbnbCerealApp-Book</string>
+        </array>
+        <array key="AirbnbCereal-Light.ttf">
+            <string>AirbnbCerealApp-Light</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Map Box View Controller-->
+        <scene sceneID="slo-Ou-TXV">
+            <objects>
+                <viewController storyboardIdentifier="MapBoxViewController" id="H8c-xL-O1r" customClass="MapBoxViewController" customModule="Trekbook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="T5l-mG-0oU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyO-uJ-X8e" customClass="MGLMapView">
+                                <rect key="frame" x="0.0" y="108" width="414" height="693"/>
+                                <color key="backgroundColor" red="0.5618079305" green="0.61315304039999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dR-ou-bXz">
+                                <rect key="frame" x="309" y="823" width="65" height="39"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="20"/>
+                                <state key="normal" title="friends">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="MyFriendsPressed:" destination="H8c-xL-O1r" eventType="touchUpInside" id="33Y-xK-eUf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFd-wg-nlp">
+                                <rect key="frame" x="38" y="823" width="92" height="39"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="20"/>
+                                <state key="normal" title="my profile">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="MyProfilePressed:" destination="H8c-xL-O1r" eventType="touchUpInside" id="yEw-uf-Wam"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwp-pb-Pmc">
+                                <rect key="frame" x="313" y="55" width="61" height="39"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="20"/>
+                                <state key="normal" title="logout">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="LogoutButtonPressed:" destination="H8c-xL-O1r" eventType="touchUpInside" id="lB8-nM-FEX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.56916040180000005" green="0.62214434149999998" blue="0.97650903460000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="6Jb-X8-zXu" firstAttribute="trailing" secondItem="8dR-ou-bXz" secondAttribute="trailing" constant="40" id="AO7-VB-EaH"/>
+                            <constraint firstItem="HyO-uJ-X8e" firstAttribute="centerX" secondItem="T5l-mG-0oU" secondAttribute="centerX" id="BzI-Cc-lVW"/>
+                            <constraint firstItem="nwp-pb-Pmc" firstAttribute="top" secondItem="6Jb-X8-zXu" secondAttribute="top" constant="11" id="MTJ-Pm-ng6"/>
+                            <constraint firstItem="8dR-ou-bXz" firstAttribute="baseline" secondItem="mFd-wg-nlp" secondAttribute="baseline" id="QaB-Ee-S9d"/>
+                            <constraint firstItem="mFd-wg-nlp" firstAttribute="top" secondItem="HyO-uJ-X8e" secondAttribute="bottom" constant="22" id="SD6-Oo-b8q"/>
+                            <constraint firstItem="mFd-wg-nlp" firstAttribute="leading" secondItem="6Jb-X8-zXu" secondAttribute="leading" constant="38" id="SSP-qN-TIN"/>
+                            <constraint firstItem="8dR-ou-bXz" firstAttribute="bottom" secondItem="6Jb-X8-zXu" secondAttribute="bottom" id="TaL-3w-ULA"/>
+                            <constraint firstItem="nwp-pb-Pmc" firstAttribute="trailing" secondItem="8dR-ou-bXz" secondAttribute="trailing" id="Wp2-gI-iVn"/>
+                            <constraint firstItem="HyO-uJ-X8e" firstAttribute="top" secondItem="nwp-pb-Pmc" secondAttribute="bottom" constant="14" id="Yu0-eD-VLq"/>
+                            <constraint firstItem="HyO-uJ-X8e" firstAttribute="leading" secondItem="6Jb-X8-zXu" secondAttribute="leading" id="bMM-vK-pOS"/>
+                            <constraint firstItem="8dR-ou-bXz" firstAttribute="top" secondItem="HyO-uJ-X8e" secondAttribute="bottom" constant="22" id="zIH-KA-owl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Jb-X8-zXu"/>
+                    </view>
+                    <connections>
+                        <outlet property="MapBoxView" destination="HyO-uJ-X8e" id="t1r-qq-soe"/>
+                        <outlet property="myFriendsButton" destination="8dR-ou-bXz" id="59i-G4-L3I"/>
+                        <outlet property="myLogoutButton" destination="nwp-pb-Pmc" id="U2s-07-cPi"/>
+                        <outlet property="myProfileButton" destination="mFd-wg-nlp" id="oyK-b8-Knq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="key-3Z-ipg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="144.92753623188406" y="85.714285714285708"/>
+        </scene>
+        <!--Left View Controller-->
+        <scene sceneID="g4q-3g-AJT">
+            <objects>
+                <viewController storyboardIdentifier="LeftViewController" title="Left View Controller" id="jIy-VJ-I4F" customClass="LeftPanelViewController" customModule="Trekbook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="N2p-Mc-p9e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gj3-fL-34D">
+                                <rect key="frame" x="0.0" y="44" width="354" height="818"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="my profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E44-Dv-EmO">
+                                        <rect key="frame" x="131" y="28" width="92" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="27" id="Afm-QC-ZSk"/>
+                                            <constraint firstAttribute="width" constant="92" id="mNd-EX-vxi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hiclipart.com" translatesAutoresizingMaskIntoConstraints="NO" id="vYm-Vi-Sl4">
+                                        <rect key="frame" x="33" y="110" width="289.00000000000011" height="259.00000000000011"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="259" id="Gh6-fX-q5s"/>
+                                            <constraint firstAttribute="width" constant="289" id="v1p-lt-Mvv"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLACEHOLDER_NAME" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsh-HK-lqu">
+                                        <rect key="frame" x="8" y="413" width="338" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="338" id="cvJ-RG-VBn"/>
+                                            <constraint firstAttribute="height" constant="37" id="dfW-rG-FV8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="28"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLACEHOLDER_USERNAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fc4-Ti-L0Z">
+                                        <rect key="frame" x="8" y="515" width="338" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="338" id="ELs-fG-4Nh"/>
+                                            <constraint firstAttribute="height" constant="27" id="xAF-pp-Zt9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.56916040180000005" green="0.62214434149999998" blue="0.97650903460000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="354" id="0pf-rm-uFD"/>
+                                    <constraint firstAttribute="height" constant="818" id="7yC-55-1OT"/>
+                                    <constraint firstAttribute="trailing" secondItem="vYm-Vi-Sl4" secondAttribute="trailing" constant="32.000000000000114" id="BWu-25-P9e"/>
+                                    <constraint firstItem="vYm-Vi-Sl4" firstAttribute="top" secondItem="Gj3-fL-34D" secondAttribute="top" constant="110" id="GsB-BQ-0Ha"/>
+                                    <constraint firstItem="Wsh-HK-lqu" firstAttribute="centerX" secondItem="Gj3-fL-34D" secondAttribute="centerX" id="QSM-ry-xmw"/>
+                                    <constraint firstItem="Wsh-HK-lqu" firstAttribute="top" secondItem="vYm-Vi-Sl4" secondAttribute="bottom" constant="44" id="SgM-EQ-UfV"/>
+                                    <constraint firstAttribute="trailing" secondItem="E44-Dv-EmO" secondAttribute="trailing" constant="131" id="tHo-ol-4uE"/>
+                                    <constraint firstItem="Fc4-Ti-L0Z" firstAttribute="centerX" secondItem="Gj3-fL-34D" secondAttribute="centerX" id="w1M-t4-hiA"/>
+                                    <constraint firstItem="Fc4-Ti-L0Z" firstAttribute="top" secondItem="Wsh-HK-lqu" secondAttribute="bottom" constant="65" id="x3t-Nq-RAk"/>
+                                    <constraint firstItem="E44-Dv-EmO" firstAttribute="top" secondItem="Gj3-fL-34D" secondAttribute="top" constant="28" id="zvg-5S-UlB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.5618079305" green="0.61315304039999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="Gj3-fL-34D" firstAttribute="top" secondItem="Ab2-RH-t1u" secondAttribute="top" id="S8P-ok-ZLB"/>
+                            <constraint firstItem="Ab2-RH-t1u" firstAttribute="trailing" secondItem="Gj3-fL-34D" secondAttribute="trailing" constant="60" id="jBS-Rj-WRn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ab2-RH-t1u"/>
+                    </view>
+                    <connections>
+                        <outlet property="ProfileImage" destination="vYm-Vi-Sl4" id="yBb-z2-pID"/>
+                        <outlet property="ProfileName" destination="Wsh-HK-lqu" id="FKy-S1-laG"/>
+                        <outlet property="ProfileUsername" destination="Fc4-Ti-L0Z" id="lBm-yf-qwL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nwL-jT-jaf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-588.40579710144937" y="363.61607142857139"/>
+        </scene>
+        <!--Right View Controller-->
+        <scene sceneID="djX-GB-qpw">
+            <objects>
+                <viewController storyboardIdentifier="RightViewController" title="Right View Controller" id="P2Y-nJ-zM8" customClass="RightPanelViewController" customModule="Trekbook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xpy-q5-MmT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ARQ-fZ-Voe">
+                                <rect key="frame" x="60" y="44" width="354" height="818"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="my friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eG-nm-qfj">
+                                        <rect key="frame" x="128.5" y="41" width="97" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="97" id="0da-mB-DVU"/>
+                                            <constraint firstAttribute="height" constant="27" id="dhU-cL-Prz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gX7-3s-9L0">
+                                        <rect key="frame" x="0.0" y="96" width="354" height="694"/>
+                                        <color key="backgroundColor" red="0.56916040180000005" green="0.62214434149999998" blue="0.97650903460000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="354" id="gEX-au-GeQ"/>
+                                            <constraint firstAttribute="height" constant="694" id="lpv-rp-Uyr"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="108" id="ZHg-FO-fpd" customClass="FriendCell" customModule="Trekbook" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="354" height="108"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZHg-FO-fpd" id="6de-Sb-Ixc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="108"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hfo-0U-dNJ" customClass="DesignView" customModule="Trekbook" customModuleProvider="target">
+                                                            <rect key="frame" x="20" y="4.5" width="314" height="99"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="62u-Hf-AQq">
+                                                                    <rect key="frame" x="17" y="15" width="70" height="70"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="70" id="fs7-Eo-H3E"/>
+                                                                        <constraint firstAttribute="height" constant="70" id="tmU-j2-NZP"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1I9-Sh-e83">
+                                                                    <rect key="frame" x="95" y="15" width="211" height="24"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="211" id="K0C-An-Udi"/>
+                                                                        <constraint firstAttribute="height" constant="24" id="TRA-Ux-yFq"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="18"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUc-Ia-bwW">
+                                                                    <rect key="frame" x="95" y="40" width="219" height="20"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="20" id="0wE-bp-WAb"/>
+                                                                        <constraint firstAttribute="width" constant="219" id="EVg-TF-Uxs"/>
+                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Gen-Ec-sxr"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="219" id="mtc-jj-Ikc"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="15"/>
+                                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstItem="dUc-Ia-bwW" firstAttribute="leading" secondItem="Hfo-0U-dNJ" secondAttribute="leading" constant="95" id="22b-eR-mJI"/>
+                                                                <constraint firstItem="62u-Hf-AQq" firstAttribute="leading" secondItem="Hfo-0U-dNJ" secondAttribute="leading" constant="17" id="5ZO-Nr-ulc"/>
+                                                                <constraint firstItem="1I9-Sh-e83" firstAttribute="top" secondItem="Hfo-0U-dNJ" secondAttribute="top" constant="15" id="7RC-y4-ePa"/>
+                                                                <constraint firstItem="62u-Hf-AQq" firstAttribute="top" secondItem="Hfo-0U-dNJ" secondAttribute="top" constant="15" id="EoR-GN-JFa"/>
+                                                                <constraint firstAttribute="height" constant="99" id="QoB-SO-2Fg"/>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="99" id="WEP-eG-FdR"/>
+                                                                <constraint firstAttribute="bottom" secondItem="1I9-Sh-e83" secondAttribute="bottom" constant="60" id="a1Q-kY-Iro"/>
+                                                                <constraint firstItem="dUc-Ia-bwW" firstAttribute="top" secondItem="Hfo-0U-dNJ" secondAttribute="top" constant="40" id="qAY-UJ-upN"/>
+                                                                <constraint firstItem="1I9-Sh-e83" firstAttribute="leading" secondItem="Hfo-0U-dNJ" secondAttribute="leading" constant="95" id="vsT-dn-yDb"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.56916040180000005" green="0.62214434149999998" blue="0.97650903460000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Hfo-0U-dNJ" firstAttribute="centerX" secondItem="6de-Sb-Ixc" secondAttribute="centerX" id="9k6-xT-hnm"/>
+                                                        <constraint firstItem="Hfo-0U-dNJ" firstAttribute="centerX" secondItem="6de-Sb-Ixc" secondAttribute="centerX" id="FRB-pM-xON"/>
+                                                        <constraint firstItem="Hfo-0U-dNJ" firstAttribute="centerY" secondItem="6de-Sb-Ixc" secondAttribute="centerY" id="TVo-DP-yyL"/>
+                                                        <constraint firstItem="Hfo-0U-dNJ" firstAttribute="leading" secondItem="6de-Sb-Ixc" secondAttribute="leading" constant="20" id="wpV-fa-Ff3"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" red="0.56916040180000005" green="0.62214434149999998" blue="0.97650903460000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <connections>
+                                                    <outlet property="friendImage" destination="62u-Hf-AQq" id="Rgl-jp-9P3"/>
+                                                    <outlet property="friendNameLabel" destination="1I9-Sh-e83" id="B1F-UC-oLX"/>
+                                                    <outlet property="friendUsernameLabel" destination="dUc-Ia-bwW" id="1Bu-jQ-9ni"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.56916040180000005" green="0.62214434149999998" blue="0.97650903460000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="gX7-3s-9L0" firstAttribute="centerX" secondItem="ARQ-fZ-Voe" secondAttribute="centerX" id="2bw-yH-Y6C"/>
+                                    <constraint firstAttribute="width" constant="354" id="7l5-og-hsq"/>
+                                    <constraint firstItem="3eG-nm-qfj" firstAttribute="centerX" secondItem="ARQ-fZ-Voe" secondAttribute="centerX" id="Lw6-j5-Em8"/>
+                                    <constraint firstItem="3eG-nm-qfj" firstAttribute="top" secondItem="ARQ-fZ-Voe" secondAttribute="top" constant="41" id="aau-23-ZXL"/>
+                                    <constraint firstAttribute="bottom" secondItem="gX7-3s-9L0" secondAttribute="bottom" constant="28" id="iPE-tK-agS"/>
+                                    <constraint firstAttribute="height" constant="818" id="qnY-0g-19h"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.5618079305" green="0.61315304039999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="ARQ-fZ-Voe" firstAttribute="leading" secondItem="7gS-G8-qfB" secondAttribute="leading" constant="60" id="V4i-o2-Sv4"/>
+                            <constraint firstItem="ARQ-fZ-Voe" firstAttribute="top" secondItem="7gS-G8-qfB" secondAttribute="top" id="rWp-TK-Kw2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7gS-G8-qfB"/>
+                    </view>
+                    <connections>
+                        <outlet property="FriendTableView" destination="gX7-3s-9L0" id="bWh-r1-ipQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eo0-g9-YHl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1027.536231884058" y="381.69642857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="hiclipart.com" width="748" height="748"/>
+    </resources>
+</document>

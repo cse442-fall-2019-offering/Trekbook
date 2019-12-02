@@ -26,7 +26,7 @@ SECRET_KEY = 'tmuq$5o(r87sc*_-z$zs+_dn0r71&5oqv4klf@j8s1=!i-_y=c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', '10.0.2.2']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'markers',
     'trekbook_base'
 ]
 
