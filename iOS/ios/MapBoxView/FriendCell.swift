@@ -39,7 +39,6 @@ class FriendCell: UITableViewCell {
     func configureForFriend(_ friend: UsersStruct.userData) {
         friendNameLabel.text = friend.fullname
         friendUsernameLabel.text = friend.username
-        friendVisitedLabel.text = friend.numbervisited
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

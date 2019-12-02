@@ -32,13 +32,11 @@ class LeftPanelViewController: SidePanelViewController {
     @IBOutlet weak var ProfileImage: UIView!
     @IBOutlet weak var ProfileName: UILabel!
     @IBOutlet weak var ProfileUsername: UILabel!
-    @IBOutlet weak var ProfileNumberVisited: UILabel!
     
     func updateProfile(){
 
         ProfileName.text = User?.data.fullname
         ProfileUsername.text = User?.data.username
-        ProfileNumberVisited.text = User?.data.numbervisited
     }
     
     override func viewDidLoad() {
