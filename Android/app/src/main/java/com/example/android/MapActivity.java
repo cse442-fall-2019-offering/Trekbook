@@ -46,6 +46,7 @@ import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
@@ -111,6 +112,7 @@ public class MapActivity extends AppCompatActivity {
             public void onMapReady(@NonNull final MapboxMap mapboxMap) {
                 final ApiService apiService = ApiSingleton.getInstance().getApiService();
                 SharedPreferences sp = getSharedPreferences("UserInfo", MODE_PRIVATE);
+
                 final int uid = sp.getInt("uid", 0);
                 features = new ArrayList<Feature>();
 
@@ -172,6 +174,8 @@ public class MapActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Response<ManyPinsPackage> pinResponse) {
                                         if( pinResponse.isSuccessful()){
+                                            Double lat = 43.0;
+                                            Double lon = -73.0;
                                             Log.i("Received Pins", pinResponse.toString());
                                             for(PinSaveData pin: pinResponse.body().getPins()) {
                                                 Feature feat = Feature.fromGeometry(
@@ -180,11 +184,19 @@ public class MapActivity extends AppCompatActivity {
                                                 feat.addBooleanProperty("selected", false);
                                                 feat.addStringProperty("description", pin.getDescription());
                                                 feat.addStringProperty("title", pin.getTitle());
+                                                lat = pin.getLatitude();
+                                                lon = pin.getLongitude();
                                                 features.add(feat);
                                                 Bitmap bitmap = fromLayoutToBM(feat);
                                                 imgMap.put("marker-" + feature_ticker, bitmap);
                                                 mapboxMap.getStyle().addImage("marker-" + feature_ticker, bitmap);
                                             }
+                                            CameraPosition position = new CameraPosition.Builder()
+                                                    .target(new LatLng(lat, lon))
+                                                    .zoom(10)
+                                                    .tilt(20)
+                                                    .build();
+                                            mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(position), 500);
                                             GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
                                             src.setGeoJson(FeatureCollection.fromFeatures(features));
                                         }
@@ -244,9 +256,13 @@ public class MapActivity extends AppCompatActivity {
                             public void onSuccess(Response<ManyPinsPackage> pinResponse) {
                                 if( pinResponse.isSuccessful()){
                                     Log.i("Received Pins", pinResponse.toString());
+                                    Double lat = 40.0;
+                                    Double lon = -73.0;
                                     for(PinSaveData pin: pinResponse.body().getPins()) {
                                         Feature feat = Feature.fromGeometry(
                                                 Point.fromLngLat(pin.getLongitude(), pin.getLatitude()));
+                                        lat = pin.getLatitude();
+                                        lon = pin.getLongitude();
                                         feat.addStringProperty("marker_id","marker-" + (++feature_ticker));
                                         feat.addBooleanProperty("selected", false);
                                         feat.addStringProperty("description", pin.getDescription());
@@ -258,6 +274,13 @@ public class MapActivity extends AppCompatActivity {
                                     }
                                     GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
                                     src.setGeoJson(FeatureCollection.fromFeatures(features));
+                                    CameraPosition position = new CameraPosition.Builder()
+                                            .target(new LatLng(lat, lon))
+                                            .zoom(10)
+                                            .tilt(20)
+                                            .build();
+                                    mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(position), 1);
+
                                 }
                                 else{
                                     Log.e("Bad Server Resp", pinResponse.toString());
@@ -371,7 +394,20 @@ public class MapActivity extends AppCompatActivity {
                                         view.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
+                                                if(current_friend == (TextView)view)
+                                                    return;
                                                 features = new ArrayList<Feature>();
+                                                if (current_friend != null)
+                                                {
+                                                    view.setBackgroundColor(Color.rgb(0,213,255));
+                                                    current_friend.setBackgroundColor(Color.rgb(255,255,255));
+                                                    current_friend = (TextView) view;
+                                                }
+                                                else
+                                                {
+                                                    view.setBackgroundColor(Color.rgb(0,213,255));
+                                                    current_friend = (TextView)view;
+                                                }
                                                 Single<Response<ManyPinsPackage>> pinObservable = apiService.getPins(fuid);
                                                 pinObservable.subscribeOn(Schedulers.io())
                                                         .observeOn(AndroidSchedulers.mainThread())
@@ -383,6 +419,8 @@ public class MapActivity extends AppCompatActivity {
                                                             @Override
                                                             public void onSuccess(Response<ManyPinsPackage> pinResponse) {
                                                                 if (pinResponse.isSuccessful()) {
+                                                                    Double lat = 43.0;
+                                                                    Double lon = -73.0;
                                                                     Log.i("Received Pins", pinResponse.toString());
                                                                     for (PinSaveData pin : pinResponse.body().getPins()) {
                                                                         Feature feat = Feature.fromGeometry(
@@ -392,12 +430,20 @@ public class MapActivity extends AppCompatActivity {
                                                                         feat.addStringProperty("description", pin.getDescription());
                                                                         feat.addStringProperty("title", pin.getTitle());
                                                                         features.add(feat);
+                                                                        lat = pin.getLatitude();
+                                                                        lon = pin.getLongitude();
                                                                         Bitmap bitmap = fromLayoutToBM(feat);
                                                                         imgMap.put("marker-" + feature_ticker, bitmap);
                                                                         mapboxMap.getStyle().addImage("marker-" + feature_ticker, bitmap);
                                                                     }
                                                                     GeoJsonSource src = (GeoJsonSource) mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
                                                                     src.setGeoJson(FeatureCollection.fromFeatures(features));
+                                                                    CameraPosition position = new CameraPosition.Builder()
+                                                                            .target(new LatLng(lat, lon))
+                                                                            .zoom(10)
+                                                                            .tilt(20)
+                                                                            .build();
+                                                                    mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(position), 500);
                                                                 } else {
                                                                     Log.e("Bad Server Resp", pinResponse.toString());
                                                                 }
@@ -414,17 +460,6 @@ public class MapActivity extends AppCompatActivity {
                                                 ((TextView) (findViewById(R.id.input_description))).setText("");
                                                 ((TextView) (findViewById(R.id.input_title))).setText("");
                                                 currently_editing = true;
-                                                if (current_friend != null)
-                                                {
-                                                    view.setBackgroundColor(Color.rgb(0,213,255));
-                                                    current_friend.setBackgroundColor(Color.rgb(255,255,255));
-                                                    current_friend = (TextView) view;
-                                                }
-                                                else
-                                                {
-                                                    view.setBackgroundColor(Color.rgb(0,213,255));
-                                                    current_friend = (TextView)view;
-                                                }
                                             }
                                         });
                                         friends_list.addView(view);
