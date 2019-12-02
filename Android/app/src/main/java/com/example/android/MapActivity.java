@@ -83,6 +83,11 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconOffset;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconSize;
 
 public class MapActivity extends AppCompatActivity {
+    //Default coor for UB
+    final private double DEFAULT_LAT = 43.0008;
+    final private double DEFAULT_LNG = -78.7890;
+    final private int DEFAULT_ZOOM = 8;
+
     private MapView mapView;
     private PermissionsManager permissionsManager;
     public List<LoggedInUser> friends;
@@ -174,8 +179,8 @@ public class MapActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Response<ManyPinsPackage> pinResponse) {
                                         if( pinResponse.isSuccessful()){
-                                            Double lat = 43.0;
-                                            Double lon = -73.0;
+                                            Double lat = DEFAULT_LAT;
+                                            Double lon = DEFAULT_LNG;
                                             Log.i("Received Pins", pinResponse.toString());
                                             for(PinSaveData pin: pinResponse.body().getPins()) {
                                                 Feature feat = Feature.fromGeometry(
@@ -193,7 +198,7 @@ public class MapActivity extends AppCompatActivity {
                                             }
                                             CameraPosition position = new CameraPosition.Builder()
                                                     .target(new LatLng(lat, lon))
-                                                    .zoom(10)
+                                                    .zoom(DEFAULT_ZOOM)
                                                     .tilt(20)
                                                     .build();
                                             mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(position), 500);
@@ -256,8 +261,8 @@ public class MapActivity extends AppCompatActivity {
                             public void onSuccess(Response<ManyPinsPackage> pinResponse) {
                                 if( pinResponse.isSuccessful()){
                                     Log.i("Received Pins", pinResponse.toString());
-                                    Double lat = 40.0;
-                                    Double lon = -73.0;
+                                    Double lat = DEFAULT_LAT;
+                                    Double lon = DEFAULT_LNG;
                                     for(PinSaveData pin: pinResponse.body().getPins()) {
                                         Feature feat = Feature.fromGeometry(
                                                 Point.fromLngLat(pin.getLongitude(), pin.getLatitude()));
@@ -276,7 +281,7 @@ public class MapActivity extends AppCompatActivity {
                                     src.setGeoJson(FeatureCollection.fromFeatures(features));
                                     CameraPosition position = new CameraPosition.Builder()
                                             .target(new LatLng(lat, lon))
-                                            .zoom(10)
+                                            .zoom(DEFAULT_ZOOM)
                                             .tilt(20)
                                             .build();
                                     mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(position), 1);
@@ -419,8 +424,8 @@ public class MapActivity extends AppCompatActivity {
                                                             @Override
                                                             public void onSuccess(Response<ManyPinsPackage> pinResponse) {
                                                                 if (pinResponse.isSuccessful()) {
-                                                                    Double lat = 43.0;
-                                                                    Double lon = -73.0;
+                                                                    Double lat = DEFAULT_LAT;
+                                                                    Double lon = DEFAULT_LNG;
                                                                     Log.i("Received Pins", pinResponse.toString());
                                                                     for (PinSaveData pin : pinResponse.body().getPins()) {
                                                                         Feature feat = Feature.fromGeometry(
@@ -440,7 +445,7 @@ public class MapActivity extends AppCompatActivity {
                                                                     src.setGeoJson(FeatureCollection.fromFeatures(features));
                                                                     CameraPosition position = new CameraPosition.Builder()
                                                                             .target(new LatLng(lat, lon))
-                                                                            .zoom(10)
+                                                                            .zoom(DEFAULT_ZOOM)
                                                                             .tilt(20)
                                                                             .build();
                                                                     mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(position), 500);
