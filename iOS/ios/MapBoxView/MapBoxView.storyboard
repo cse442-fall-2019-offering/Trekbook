@@ -108,7 +108,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hiclipart.com" translatesAutoresizingMaskIntoConstraints="NO" id="vYm-Vi-Sl4">
-                                        <rect key="frame" x="33" y="110" width="289" height="259"/>
+                                        <rect key="frame" x="33" y="110" width="289.00000000000011" height="259.00000000000011"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="259" id="Gh6-fX-q5s"/>
                                             <constraint firstAttribute="width" constant="289" id="v1p-lt-Mvv"/>
@@ -134,24 +134,15 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLACEHOLDER_VISITED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMm-5c-nKe">
-                                        <rect key="frame" x="8" y="584" width="338" height="23.5"/>
-                                        <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.56916040180000005" green="0.62214434149999998" blue="0.97650903460000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="354" id="0pf-rm-uFD"/>
                                     <constraint firstAttribute="height" constant="818" id="7yC-55-1OT"/>
-                                    <constraint firstItem="AMm-5c-nKe" firstAttribute="trailing" secondItem="Fc4-Ti-L0Z" secondAttribute="trailing" id="8fl-UR-B8I"/>
                                     <constraint firstAttribute="trailing" secondItem="vYm-Vi-Sl4" secondAttribute="trailing" constant="32.000000000000114" id="BWu-25-P9e"/>
-                                    <constraint firstItem="AMm-5c-nKe" firstAttribute="leading" secondItem="Fc4-Ti-L0Z" secondAttribute="leading" id="DYy-B0-kcb"/>
                                     <constraint firstItem="vYm-Vi-Sl4" firstAttribute="top" secondItem="Gj3-fL-34D" secondAttribute="top" constant="110" id="GsB-BQ-0Ha"/>
                                     <constraint firstItem="Wsh-HK-lqu" firstAttribute="centerX" secondItem="Gj3-fL-34D" secondAttribute="centerX" id="QSM-ry-xmw"/>
                                     <constraint firstItem="Wsh-HK-lqu" firstAttribute="top" secondItem="vYm-Vi-Sl4" secondAttribute="bottom" constant="44" id="SgM-EQ-UfV"/>
-                                    <constraint firstItem="AMm-5c-nKe" firstAttribute="top" secondItem="Fc4-Ti-L0Z" secondAttribute="bottom" constant="42" id="qjd-zo-biv"/>
                                     <constraint firstAttribute="trailing" secondItem="E44-Dv-EmO" secondAttribute="trailing" constant="131" id="tHo-ol-4uE"/>
                                     <constraint firstItem="Fc4-Ti-L0Z" firstAttribute="centerX" secondItem="Gj3-fL-34D" secondAttribute="centerX" id="w1M-t4-hiA"/>
                                     <constraint firstItem="Fc4-Ti-L0Z" firstAttribute="top" secondItem="Wsh-HK-lqu" secondAttribute="bottom" constant="65" id="x3t-Nq-RAk"/>
@@ -169,7 +160,6 @@
                     <connections>
                         <outlet property="ProfileImage" destination="vYm-Vi-Sl4" id="yBb-z2-pID"/>
                         <outlet property="ProfileName" destination="Wsh-HK-lqu" id="FKy-S1-laG"/>
-                        <outlet property="ProfileNumberVisited" destination="AMm-5c-nKe" id="LT9-4t-fR9"/>
                         <outlet property="ProfileUsername" destination="Fc4-Ti-L0Z" id="lBm-yf-qwL"/>
                     </connections>
                 </viewController>
@@ -216,16 +206,6 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hfo-0U-dNJ" customClass="DesignView" customModule="Trekbook" customModuleProvider="target">
                                                             <rect key="frame" x="20" y="4.5" width="314" height="99"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="places visited" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xX-Yo-hHa">
-                                                                    <rect key="frame" x="165" y="62" width="129" height="21"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="21" id="6l3-Fq-VMq"/>
-                                                                        <constraint firstAttribute="width" constant="129" id="bEz-qF-ATW"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="15"/>
-                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="62u-Hf-AQq">
                                                                     <rect key="frame" x="17" y="15" width="70" height="70"/>
                                                                     <constraints>
@@ -262,9 +242,7 @@
                                                                 <constraint firstItem="62u-Hf-AQq" firstAttribute="leading" secondItem="Hfo-0U-dNJ" secondAttribute="leading" constant="17" id="5ZO-Nr-ulc"/>
                                                                 <constraint firstItem="1I9-Sh-e83" firstAttribute="top" secondItem="Hfo-0U-dNJ" secondAttribute="top" constant="15" id="7RC-y4-ePa"/>
                                                                 <constraint firstItem="62u-Hf-AQq" firstAttribute="top" secondItem="Hfo-0U-dNJ" secondAttribute="top" constant="15" id="EoR-GN-JFa"/>
-                                                                <constraint firstItem="7xX-Yo-hHa" firstAttribute="top" secondItem="Hfo-0U-dNJ" secondAttribute="top" constant="62" id="Puq-da-Ynx"/>
                                                                 <constraint firstAttribute="height" constant="99" id="QoB-SO-2Fg"/>
-                                                                <constraint firstAttribute="trailing" secondItem="7xX-Yo-hHa" secondAttribute="trailing" constant="20" id="T4T-RX-sEH"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="99" id="WEP-eG-FdR"/>
                                                                 <constraint firstAttribute="bottom" secondItem="1I9-Sh-e83" secondAttribute="bottom" constant="60" id="a1Q-kY-Iro"/>
                                                                 <constraint firstItem="dUc-Ia-bwW" firstAttribute="top" secondItem="Hfo-0U-dNJ" secondAttribute="top" constant="40" id="qAY-UJ-upN"/>
@@ -285,7 +263,6 @@
                                                     <outlet property="friendImage" destination="62u-Hf-AQq" id="Rgl-jp-9P3"/>
                                                     <outlet property="friendNameLabel" destination="1I9-Sh-e83" id="B1F-UC-oLX"/>
                                                     <outlet property="friendUsernameLabel" destination="dUc-Ia-bwW" id="1Bu-jQ-9ni"/>
-                                                    <outlet property="friendVisitedLabel" destination="7xX-Yo-hHa" id="FMD-KL-1q3"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
