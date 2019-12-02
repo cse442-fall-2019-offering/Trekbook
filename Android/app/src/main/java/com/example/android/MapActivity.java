@@ -156,6 +156,7 @@ public class MapActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         currently_editing = false;
+                        features = new ArrayList<>();
                         if(current_friend != null)
                         {
                             current_friend.setBackgroundColor(Color.rgb(255,255,255));
