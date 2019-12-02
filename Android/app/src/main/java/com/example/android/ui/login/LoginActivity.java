@@ -106,6 +106,9 @@ public class LoginActivity extends AppCompatActivity {
                                 LoggedInUser user = userResponse.body().getLoggedInUser();
                                 updateUiWithUser(user);
                                 spE.putInt("uid", user.getUid());
+                                spE.putString("first_name", user.getFirstName());
+                                spE.putString("last_name", user.getLastName());
+                                spE.putString("username", user.getUsername());
                                 spE.apply();
                                 Intent goToMap = new Intent(getApplicationContext(), MapActivity.class);
                                 startActivity(goToMap);
