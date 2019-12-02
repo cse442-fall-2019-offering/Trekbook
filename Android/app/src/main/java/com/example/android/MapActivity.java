@@ -35,6 +35,7 @@ import com.example.android.data.ApiSingleton;
 import com.example.android.data.model.LoggedInUser;
 import com.example.android.data.model.LoggedInUserPackage;
 import com.example.android.data.model.ManyLoggedInUsersPackage;
+import com.example.android.data.model.ManyPinsPackage;
 import com.example.android.data.model.PinSaveData;
 import com.example.android.ui.login.LoginActivity;
 import com.mapbox.android.core.permissions.PermissionsManager;
@@ -110,25 +111,8 @@ public class MapActivity extends AppCompatActivity {
                 final ApiService apiService = ApiSingleton.getInstance().getApiService();
                 SharedPreferences sp = getSharedPreferences("UserInfo", MODE_PRIVATE);
                 final int uid = sp.getInt("uid", 0);
+                features = new ArrayList<Feature>();
 
-                features = new ArrayList<>();
-                features.add(Feature.fromGeometry(
-                        Point.fromLngLat(40.73581, -33.213144)));
-                features.add(Feature.fromGeometry(
-                        Point.fromLngLat(-73.99155, 40.73581)));
-                features.add(Feature.fromGeometry(
-                        Point.fromLngLat(-56.990533, -30.583266)));
-
-                for(Feature feat : features)
-                {
-                    feat.addStringProperty("marker_id", "marker-" + (++feature_ticker));
-                    feat.addBooleanProperty("selected", false);
-                    feat.addStringProperty("description", "marker-" + (feature_ticker));
-                    feat.addStringProperty("title", "Default Title Test");
-                    Bitmap bitmap = fromLayoutToBM(feat);
-
-                    imgMap.put("marker-" + feature_ticker, bitmap);
-                }
                 mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjf4m44iw0uza2spb3q0a7s41")
 
                         // Add the SymbolLayer icon image to the map style
@@ -193,11 +177,49 @@ public class MapActivity extends AppCompatActivity {
                             String title = selectedFeature.getStringProperty("marker_id");
                             GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
                             src.setGeoJson(FeatureCollection.fromFeatures(features));
-                            Toast.makeText(getBaseContext(), "You selected " + title, Toast.LENGTH_SHORT).show();
                         }
                         return true;
                     }
                 };
+
+                Single<Response<ManyPinsPackage>> pinObservable = apiService.getPins(uid);
+                pinObservable.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new SingleObserver<Response<ManyPinsPackage>>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
+                            }
+                            @Override
+                            public void onSuccess(Response<ManyPinsPackage> pinResponse) {
+                                if( pinResponse.isSuccessful()){
+                                    Log.i("Received Pins", pinResponse.toString());
+                                    for(PinSaveData pin: pinResponse.body().getPins()) {
+                                        Feature feat = Feature.fromGeometry(
+                                                Point.fromLngLat(pin.getLongitude(), pin.getLatitude()));
+                                        feat.addStringProperty("marker_id","marker-" + (++feature_ticker));
+                                        feat.addBooleanProperty("selected", false);
+                                        feat.addStringProperty("description", pin.getDescription());
+                                        feat.addStringProperty("title", pin.getTitle());
+                                        features.add(feat);
+                                        Bitmap bitmap = fromLayoutToBM(feat);
+                                        imgMap.put("marker-" + feature_ticker, bitmap);
+                                        mapboxMap.getStyle().addImage("marker-" + feature_ticker, bitmap);
+                                    }
+                                    GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
+                                    src.setGeoJson(FeatureCollection.fromFeatures(features));
+                                }
+                                else{
+                                    Log.e("Bad Server Resp", pinResponse.toString());
+                                }
+
+                            }
+                            @Override
+                            public void onError(Throwable e) {
+                                //TODO: no connection to server message
+                                Log.e("No Server Resp", "No connnection to the server: " + e.toString());
+                            }
+                        });
+
                 mapboxMap.addOnMapClickListener(feature_checker);
                 add_marker = new MapboxMap.OnMapLongClickListener() {
                     @Override
@@ -292,14 +314,50 @@ public class MapActivity extends AppCompatActivity {
                                     for(LoggedInUser friend: userResponse.body().getListOfUsers())
                                     {
                                         TextView view = new TextView(getBaseContext(), null, 0, R.style.FriendsListFriend);
+                                        final int fuid = friend.getUid();
                                         view.setText(friend.getFirstName());
                                         view.setLayoutParams(params);
                                         view.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
                                                 features = new ArrayList<Feature>();
-                                                GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
-                                                src.setGeoJson(FeatureCollection.fromFeatures(features));
+                                                Single<Response<ManyPinsPackage>> pinObservable = apiService.getPins(fuid);
+                                                pinObservable.subscribeOn(Schedulers.io())
+                                                        .observeOn(AndroidSchedulers.mainThread())
+                                                        .subscribe(new SingleObserver<Response<ManyPinsPackage>>() {
+                                                            @Override
+                                                            public void onSubscribe(Disposable d) {
+                                                            }
+                                                            @Override
+                                                            public void onSuccess(Response<ManyPinsPackage> pinResponse) {
+                                                                if( pinResponse.isSuccessful()){
+                                                                    Log.i("Received Pins", pinResponse.toString());
+                                                                    for(PinSaveData pin: pinResponse.body().getPins()) {
+                                                                        Feature feat = Feature.fromGeometry(
+                                                                                Point.fromLngLat(pin.getLongitude(), pin.getLatitude()));
+                                                                        feat.addStringProperty("marker_id","marker-" + (++feature_ticker));
+                                                                        feat.addBooleanProperty("selected", false);
+                                                                        feat.addStringProperty("description", pin.getDescription());
+                                                                        feat.addStringProperty("title", pin.getTitle());
+                                                                        features.add(feat);
+                                                                        Bitmap bitmap = fromLayoutToBM(feat);
+                                                                        imgMap.put("marker-" + feature_ticker, bitmap);
+                                                                        mapboxMap.getStyle().addImage("marker-" + feature_ticker, bitmap);
+                                                                    }
+                                                                    GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
+                                                                    src.setGeoJson(FeatureCollection.fromFeatures(features));
+                                                                }
+                                                                else{
+                                                                    Log.e("Bad Server Resp", pinResponse.toString());
+                                                                }
+
+                                                            }
+                                                            @Override
+                                                            public void onError(Throwable e) {
+                                                                //TODO: no connection to server message
+                                                                Log.e("No Server Resp", "No connnection to the server: " + e.toString());
+                                                            }
+                                                        });
                                                 findViewById(R.id.insert_tit_desc).setVisibility(View.INVISIBLE);
                                                 ((TextView)(findViewById(R.id.input_description))).setText("");
                                                 ((TextView)(findViewById(R.id.input_title))).setText("");
@@ -320,6 +378,8 @@ public class MapActivity extends AppCompatActivity {
                                 Log.e("No Server Resp", "No connnection to the server: " + e.toString());
                             }
                         });
+
+
 
 
                 // friends contains mock-up friends that will be callable from api

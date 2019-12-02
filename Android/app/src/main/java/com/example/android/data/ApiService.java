@@ -4,6 +4,7 @@ import com.example.android.data.model.LoggedInUser;
 import com.example.android.data.model.LoggedInUserPackage;
 import com.example.android.data.model.LoginRequestData;
 import com.example.android.data.model.ManyLoggedInUsersPackage;
+import com.example.android.data.model.ManyPinsPackage;
 import com.example.android.data.model.PinSaveData;
 import com.example.android.data.model.SignupRequestData;
 
@@ -29,7 +30,7 @@ public interface ApiService {
     Single<Response<ManyLoggedInUsersPackage>> getOtherUsers(@Query("user") int uid);
 
     @GET("v1/marker")
-    Single<Response<ManyLoggedInUsersPackage>> getPins(@Query("user") int uid);
+    Single<Response<ManyPinsPackage>> getPins(@Query("user") int uid);
 
     @POST("v1/marker")
     Single<Response<ManyLoggedInUsersPackage>> savePin(@Body PinSaveData req);
