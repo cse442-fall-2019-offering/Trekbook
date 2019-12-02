@@ -94,6 +94,7 @@ public class MapActivity extends AppCompatActivity {
     private List<Feature> features;
     HashMap<String, Bitmap> imgMap = new HashMap<>();
     HashMap<String, View> viewMap = new HashMap<>();
+    private TextView current_friend = null;
     private int feature_ticker;
     private boolean currently_editing;
     @Override
@@ -148,6 +149,55 @@ public class MapActivity extends AppCompatActivity {
                         GeoJsonSource src = (GeoJsonSource)style.getSource(MARKER_SOURCE_ID);
 
                         src.setGeoJson(FeatureCollection.fromFeatures(features));
+                    }
+                });
+                Button resetUserPins = findViewById(R.id.reset_button);
+                resetUserPins.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        currently_editing = false;
+                        if(current_friend != null)
+                        {
+                            current_friend.setBackgroundColor(Color.rgb(255,255,255));
+                            current_friend = null;
+                        }
+                        Single<Response<ManyPinsPackage>> pinObservable = apiService.getPins(uid);
+                        pinObservable.subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(new SingleObserver<Response<ManyPinsPackage>>() {
+                                    @Override
+                                    public void onSubscribe(Disposable d) {
+                                    }
+                                    @Override
+                                    public void onSuccess(Response<ManyPinsPackage> pinResponse) {
+                                        if( pinResponse.isSuccessful()){
+                                            Log.i("Received Pins", pinResponse.toString());
+                                            for(PinSaveData pin: pinResponse.body().getPins()) {
+                                                Feature feat = Feature.fromGeometry(
+                                                        Point.fromLngLat(pin.getLongitude(), pin.getLatitude()));
+                                                feat.addStringProperty("marker_id","marker-" + (++feature_ticker));
+                                                feat.addBooleanProperty("selected", false);
+                                                feat.addStringProperty("description", pin.getDescription());
+                                                feat.addStringProperty("title", pin.getTitle());
+                                                features.add(feat);
+                                                Bitmap bitmap = fromLayoutToBM(feat);
+                                                imgMap.put("marker-" + feature_ticker, bitmap);
+                                                mapboxMap.getStyle().addImage("marker-" + feature_ticker, bitmap);
+                                            }
+                                            GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
+                                            src.setGeoJson(FeatureCollection.fromFeatures(features));
+                                        }
+                                        else{
+                                            Log.e("Bad Server Resp", pinResponse.toString());
+                                        }
+
+                                    }
+                                    @Override
+                                    public void onError(Throwable e) {
+                                        //TODO: no connection to server message
+                                        Log.e("No Server Resp", "No connnection to the server: " + e.toString());
+                                    }
+                                });
                     }
                 });
                 feature_checker = new MapboxMap.OnMapClickListener() {
@@ -328,14 +378,15 @@ public class MapActivity extends AppCompatActivity {
                                                             @Override
                                                             public void onSubscribe(Disposable d) {
                                                             }
+
                                                             @Override
                                                             public void onSuccess(Response<ManyPinsPackage> pinResponse) {
-                                                                if( pinResponse.isSuccessful()){
+                                                                if (pinResponse.isSuccessful()) {
                                                                     Log.i("Received Pins", pinResponse.toString());
-                                                                    for(PinSaveData pin: pinResponse.body().getPins()) {
+                                                                    for (PinSaveData pin : pinResponse.body().getPins()) {
                                                                         Feature feat = Feature.fromGeometry(
                                                                                 Point.fromLngLat(pin.getLongitude(), pin.getLatitude()));
-                                                                        feat.addStringProperty("marker_id","marker-" + (++feature_ticker));
+                                                                        feat.addStringProperty("marker_id", "marker-" + (++feature_ticker));
                                                                         feat.addBooleanProperty("selected", false);
                                                                         feat.addStringProperty("description", pin.getDescription());
                                                                         feat.addStringProperty("title", pin.getTitle());
@@ -344,14 +395,14 @@ public class MapActivity extends AppCompatActivity {
                                                                         imgMap.put("marker-" + feature_ticker, bitmap);
                                                                         mapboxMap.getStyle().addImage("marker-" + feature_ticker, bitmap);
                                                                     }
-                                                                    GeoJsonSource src = (GeoJsonSource)mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
+                                                                    GeoJsonSource src = (GeoJsonSource) mapboxMap.getStyle().getSource(MARKER_SOURCE_ID);
                                                                     src.setGeoJson(FeatureCollection.fromFeatures(features));
-                                                                }
-                                                                else{
+                                                                } else {
                                                                     Log.e("Bad Server Resp", pinResponse.toString());
                                                                 }
 
                                                             }
+
                                                             @Override
                                                             public void onError(Throwable e) {
                                                                 //TODO: no connection to server message
@@ -359,12 +410,24 @@ public class MapActivity extends AppCompatActivity {
                                                             }
                                                         });
                                                 findViewById(R.id.insert_tit_desc).setVisibility(View.INVISIBLE);
-                                                ((TextView)(findViewById(R.id.input_description))).setText("");
-                                                ((TextView)(findViewById(R.id.input_title))).setText("");
-                                                currently_editing = false;
+                                                ((TextView) (findViewById(R.id.input_description))).setText("");
+                                                ((TextView) (findViewById(R.id.input_title))).setText("");
+                                                currently_editing = true;
+                                                if (current_friend != null)
+                                                {
+                                                    view.setBackgroundColor(Color.rgb(0,213,255));
+                                                    current_friend.setBackgroundColor(Color.rgb(255,255,255));
+                                                    current_friend = (TextView) view;
+                                                }
+                                                else
+                                                {
+                                                    view.setBackgroundColor(Color.rgb(0,213,255));
+                                                    current_friend = (TextView)view;
+                                                }
                                             }
                                         });
                                         friends_list.addView(view);
+
                                     }
                                 }
                                 else{
@@ -427,6 +490,7 @@ public class MapActivity extends AppCompatActivity {
                 startActivity(goToLogin);
             }
         });
+
     }
 
     private Bitmap fromLayoutToBM(Feature feat)
