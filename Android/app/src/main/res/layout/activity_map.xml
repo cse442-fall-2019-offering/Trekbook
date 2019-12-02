@@ -143,28 +143,34 @@
                     android:textSize="34sp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="15dp"/>
+
                 <ImageView
                     android:id="@+id/profile_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="175dp"
+                    android:layout_height="187dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="25dp"
                     mapbox:srcCompat="@android:drawable/sym_def_app_icon" />
+
                 <TextView
+                    android:id="@+id/profile_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="24sp"
-                    android:text="Jon Snow"/>
+                    android:layout_marginTop="10dp"
+                    android:text="Jon Snow"
+                    android:textSize="32sp" />
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/profile_desc"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
-                    android:layout_marginTop="40dp"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginRight="15dp"
-                    android:text="@string/input_bio"/>
+                    android:text="@string/input_bio"
+                    android:textAlignment="center"
+                    android:textSize="15dp" />
             </LinearLayout>
         </ScrollView>
         <ScrollView
